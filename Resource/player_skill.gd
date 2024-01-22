@@ -1,3 +1,8 @@
+'''
+Resource used to contains data
+about a player's skill.
+used for combat
+'''
 class_name PlayerSkill
 extends Resource
 	
