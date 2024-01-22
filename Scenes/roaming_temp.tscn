@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://bqrnt77usoelt"]
+
+[ext_resource type="PackedScene" uid="uid://dvdm2idrh4hy0" path="res://Scenes/Player/player.tscn" id="1_yp02i"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_12j0o"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="3_p5xki"]
+[ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="4_5tkyg"]
+
+[node name="RoamingTemp" type="Node2D"]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_yp02i")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+script = ExtResource("2_12j0o")
+
+[node name="PlayerCamera" type="Node2D" parent="."]
+script = ExtResource("3_p5xki")
+priority_override = false
+priority = 0
+zoom = Vector2(1, 1)
+follow_mode = 1
+follow_target = NodePath("../Player")
+follow_parameters/damping = true
+follow_parameters/damping_value = 10.0
+frame_preview = true
+pixel_perfect = true
+limit/draw_limits = false
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+limit/limit_node_target = NodePath("")
+limit/smoothed = false
+tween_parameters = null
+tween_on_load = true
+inactive_update_mode = 0
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(141, 151)
+texture = ExtResource("4_5tkyg")

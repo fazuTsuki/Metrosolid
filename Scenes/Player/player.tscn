@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://dvdm2idrh4hy0"]
+
+[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_aon1j"]
+[ext_resource type="PackedScene" uid="uid://dcb4al4h1d55m" path="res://Scenes/StateMachine/state_machine.tscn" id="2_5saf3"]
+[ext_resource type="PackedScene" uid="uid://6162lkt5ijhd" path="res://Scenes/Components/HealthComponent/health_component.tscn" id="2_a05gm"]
+[ext_resource type="Script" path="res://Scenes/Components/GenericStatPointComponent/generic_point_component.gd" id="3_p4q0p"]
+[ext_resource type="Script" path="res://Scenes/StateMachine/state.gd" id="4_l1yd2"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gsxuu"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fj4wr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k6ngp"]
+
+[sub_resource type="GDScript" id="GDScript_qdm0w"]
+resource_name = "player_default_state"
+script/source = "extends State
+	
+func OnEnter():
+	print_debug(\"masuk default!\")
+	
+func update(delta : float):
+	pass
+	
+func physics_Update(delta : float):
+	($\"../..\" as Player).moving()
+	
+func transition_manager():
+	pass
+	
+func _on_health_component_health_depleted():
+	transitioning.emit(\"PlayerDeadState\")
+"
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_aon1j")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(25.5, 28.5)
+texture = SubResource("PlaceholderTexture2D_gsxuu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_fj4wr")
+anim_player = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_k6ngp")
+
+[node name="Components" type="Node2D" parent="."]
+
+[node name="HealthComponent" parent="Components" instance=ExtResource("2_a05gm")]
+unique_name_in_owner = true
+
+[node name="ActCounterComponent" type="Node" parent="Components"]
+unique_name_in_owner = true
+script = ExtResource("3_p4q0p")
+
+[node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_5saf3")]
+unique_name_in_owner = true
+initial_state = NodePath("PlayerDefaultState")
+
+[node name="PlayerDefaultState" type="Node" parent="StateMachine"]
+script = SubResource("GDScript_qdm0w")
+
+[node name="PlayerDeadState" type="Node" parent="StateMachine"]
+script = ExtResource("4_l1yd2")
+
+[node name="PlayerCombatState" type="Node" parent="StateMachine"]
+script = ExtResource("4_l1yd2")
+
+[connection signal="health_depleted" from="Components/HealthComponent" to="StateMachine/PlayerDefaultState" method="_on_health_component_health_depleted"]
