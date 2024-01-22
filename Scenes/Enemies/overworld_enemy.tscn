@@ -16,6 +16,7 @@ enemy_type = "res://Scenes/Enemies/EnemyVariants/enemy.tscn"
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(0, -3)
+rotates = false
 loop = false
 
 [node name="SpawnTimer" type="Timer" parent="."]
