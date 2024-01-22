@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnkc6m6026d6e"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/enemy.gd" id="1_bpoia"]
+[ext_resource type="Script" path="res://Scenes/Components/GenericStatPointComponent/generic_point_component.gd" id="2_uppxd"]
+[ext_resource type="Script" path="res://Scenes/Components/EngagementComponent/EngagementComponent.gd" id="3_exbgf"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_bpoia")
+
+[node name="HappyPointsComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_uppxd")
+starting_value_max = false
+
+[node name="ResistanceComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_uppxd")
+max_point = 0.0
+
+[node name="EngagementComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_exbgf")
+
+[connection signal="points_full" from="HappyPointsComponent" to="." method="_on_happy_points_component_points_full"]

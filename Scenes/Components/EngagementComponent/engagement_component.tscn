@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dydewpa6ss64t"]
+
+[ext_resource type="Script" path="res://Scenes/Components/EngagementComponent/EngagementComponent.gd" id="1_dn0jg"]
+
+[node name="EngagementComponent" type="Node"]
+script = ExtResource("1_dn0jg")
+max_point = 1.0

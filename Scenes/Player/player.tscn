@@ -50,12 +50,10 @@ anim_player = NodePath("..")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k6ngp")
 
-[node name="Components" type="Node2D" parent="."]
-
-[node name="HealthComponent" parent="Components" instance=ExtResource("2_a05gm")]
+[node name="HealthComponent" parent="." instance=ExtResource("2_a05gm")]
 unique_name_in_owner = true
 
-[node name="ActCounterComponent" type="Node" parent="Components"]
+[node name="ActCounterComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_p4q0p")
 
@@ -72,4 +70,4 @@ script = ExtResource("4_l1yd2")
 [node name="PlayerCombatState" type="Node" parent="StateMachine"]
 script = ExtResource("4_l1yd2")
 
-[connection signal="health_depleted" from="Components/HealthComponent" to="StateMachine/PlayerDefaultState" method="_on_health_component_health_depleted"]
+[connection signal="health_depleted" from="HealthComponent" to="StateMachine/PlayerDefaultState" method="_on_health_component_health_depleted"]

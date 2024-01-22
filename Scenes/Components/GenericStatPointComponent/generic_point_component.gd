@@ -8,7 +8,7 @@ extends Node
 	set(value):
 		max_point = value
 		if current_points > max_point:
-			reset_points()
+			current_points = max_point
 	get: return max_point
 
 @export var min_point : float = 0 :
@@ -17,6 +17,8 @@ extends Node
 		if current_points < min_point:
 			current_points = min_point
 	get : return min_point
+
+@export var starting_value_max : bool = true
 
 var current_points : float = 0
 
@@ -35,7 +37,8 @@ signal points_full
 signal points_depleted
 #endregion
 
-func reset_points() : current_points = max_point
+func reset_points() : 
+	current_points = max_point if starting_value_max else min_point
 
 func add_points(delta : float):
 	if delta != 0 :
