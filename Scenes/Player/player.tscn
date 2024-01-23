@@ -56,6 +56,12 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 script = ExtResource("3_p4q0p")
 
+[node name="LevelComponent" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_p4q0p")
+max_point = 10000.0
+min_point = 1.0
+
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_5saf3")]
 unique_name_in_owner = true
 initial_state = NodePath("PlayerDefaultState")
