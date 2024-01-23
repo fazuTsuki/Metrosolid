@@ -25,6 +25,7 @@ states/walking/position = Vector2(645, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_imxfn"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_fa1xa"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_kev06")]
 
 [node name="Enemy" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_bpoia")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
