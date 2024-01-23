@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://3g4l7pjqkhfq"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/overworld_enemy.gd" id="1_gxfq5"]
+
+[sub_resource type="Curve2D" id="Curve2D_0eqs5"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 253, 125, 0, 0, 0, 0, 400, 432)
+}
+point_count = 3
+
+[node name="OverworldEnemy" type="Path2D"]
+curve = SubResource("Curve2D_0eqs5")
+script = ExtResource("1_gxfq5")
+enemy_type = "res://Scenes/Enemies/EnemyVariants/enemy.tscn"
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -3)
+rotates = false
+loop = false
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

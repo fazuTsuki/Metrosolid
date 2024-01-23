@@ -3,14 +3,14 @@
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_aon1j"]
 [ext_resource type="PackedScene" uid="uid://dcb4al4h1d55m" path="res://Scenes/StateMachine/state_machine.tscn" id="2_5saf3"]
 [ext_resource type="PackedScene" uid="uid://6162lkt5ijhd" path="res://Scenes/Components/HealthComponent/health_component.tscn" id="2_a05gm"]
+[ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_q6sgj"]
 [ext_resource type="Script" path="res://Scenes/Components/GenericStatPointComponent/generic_point_component.gd" id="3_p4q0p"]
 [ext_resource type="Script" path="res://Scenes/StateMachine/state.gd" id="4_l1yd2"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_gsxuu"]
-
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fj4wr"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k6ngp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_35uxo"]
+size = Vector2(129, 129)
 
 [sub_resource type="GDScript" id="GDScript_qdm0w"]
 resource_name = "player_default_state"
@@ -36,9 +36,7 @@ func _on_health_component_health_depleted():
 script = ExtResource("1_aon1j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, 0)
-scale = Vector2(25.5, 28.5)
-texture = SubResource("PlaceholderTexture2D_gsxuu")
+texture = ExtResource("2_q6sgj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -48,14 +46,13 @@ tree_root = SubResource("AnimationNodeStateMachine_fj4wr")
 anim_player = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_k6ngp")
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_35uxo")
 
-[node name="Components" type="Node2D" parent="."]
-
-[node name="HealthComponent" parent="Components" instance=ExtResource("2_a05gm")]
+[node name="HealthComponent" parent="." instance=ExtResource("2_a05gm")]
 unique_name_in_owner = true
 
-[node name="ActCounterComponent" type="Node" parent="Components"]
+[node name="ActCounterComponent" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("3_p4q0p")
 
@@ -72,4 +69,4 @@ script = ExtResource("4_l1yd2")
 [node name="PlayerCombatState" type="Node" parent="StateMachine"]
 script = ExtResource("4_l1yd2")
 
-[connection signal="health_depleted" from="Components/HealthComponent" to="StateMachine/PlayerDefaultState" method="_on_health_component_health_depleted"]
+[connection signal="health_depleted" from="HealthComponent" to="StateMachine/PlayerDefaultState" method="_on_health_component_health_depleted"]

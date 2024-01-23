@@ -1,5 +1,7 @@
 '''
 A component about health system
+
+Might be deprecated in later version
 '''
 class_name HealthComponent
 extends Node
