@@ -21,11 +21,12 @@ extends Path2D
 
 @onready var enemy = load(enemy_type)
 
-var spawned_enemy : Enemy
+var spawned_enemy 
 var can_spawn : bool = true
 
 func _ready():
 	%SpawnTimer.wait_time = spawn_cooldown
+	%PathFollow2D.rotates = false
 
 func _process(delta):
 	if can_spawn and spawned_enemy == null:
@@ -33,7 +34,10 @@ func _process(delta):
 		
 func _physics_process(delta):
 	if spawned_enemy:
+		var old_pos = %PathFollow2D.global_position
 		%PathFollow2D.progress += walk_speed * delta
+		if spawned_enemy.has_method("update_direction"):
+			spawned_enemy.update_direction((%PathFollow2D.global_position - old_pos).normalized())
 		
 func spawn_enemy():
 	#reset the path to the start
