@@ -3,7 +3,7 @@ Generic Enemey class
 Every enemy should be a scene variant of this
 '''
 class_name Enemy
-extends Node2D
+extends CharacterBody2D
 
 #Collections of good humor
 @export var ticklebones : Dictionary
@@ -18,6 +18,12 @@ extends Node2D
 var level_up_max_hp_increase : float = 0.5
 
 var level_up_max_engagement_increase : float = 0.2
+
+var facing_dir : FacingDirection.FACE :
+	set(value):
+		if facing_dir != value:
+			facing_dir = value
+			# Animparam here
 
 #region signals
 #signal when the NPC is fully enterntained
@@ -40,6 +46,9 @@ func _ready():
 	%HappyPointsComponent.max_point *= level_up_max_hp_increase * level
 	%EngagementComponent.max_point *= level_up_max_engagement_increase * level
 
+func _physics_process(delta):
+	pass
+
 func calculate_engagement(skill : PlayerSkill):
 	var type = skill.type
 	var coefficient = 1.5 if type == PlayerSkill.TYPE.SET_UP else 1
@@ -57,7 +66,6 @@ func calculate_engagement(skill : PlayerSkill):
 	%EngagementComponent.add_points(
 		delta_engagement * (%EngagementComponent.points_percentage() if delta_engagement > 0 else 1)
 		)
-	
 
 func take_skill(skill : PlayerSkill):
 	calculate_engagement(skill)
@@ -80,6 +88,13 @@ func take_skill(skill : PlayerSkill):
 				joke_failed.emit(haha_point) 
 				
 			%HappyPointsComponent.add_points(haha_point)
+
+func update_direction(dir : Vector2):
+	if dir != Vector2.ZERO:
+		if abs(dir.y) > abs(dir.x):
+			facing_dir = FacingDirection.FACE.UP if dir.y < 0 else FacingDirection.FACE.DOWN
+		else:
+			facing_dir = FacingDirection.FACE.RIGHT if dir.x > 0 else FacingDirection.FACE.LEFT
 
 
 func _on_happy_points_component_points_full():

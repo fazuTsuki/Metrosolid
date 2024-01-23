@@ -4,9 +4,9 @@
 
 [sub_resource type="Curve2D" id="Curve2D_0eqs5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 253, 125, 0, 0, 0, 0, 400, 432)
+"points": PackedVector2Array(0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 0, -3, 0, 0, 0, 0, 294, 71, 0, 0, 0, 0, 216, 198, 0, 0, 0, 0, 18, 182, 0, 0, 0, 0, -22, 5, 0, 0, 0, 0, 0, -3)
 }
-point_count = 3
+point_count = 8
 
 [node name="OverworldEnemy" type="Path2D"]
 curve = SubResource("Curve2D_0eqs5")
