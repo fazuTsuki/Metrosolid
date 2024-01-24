@@ -8,10 +8,10 @@ extends Path2D
 
 @export var walk_speed : float = 200
 
-#wether or not to destroy the enemy when reaching the end of the path
+# wether or not to destroy the enemy when reaching the end of the path
 @export var destroy_on_end : bool = true 
 
-#wether or not the enemy to walk back when reach one of the end
+# wether or not the enemy to walk back when reach one of the end
 # should be mutually exclusive with destoy on end
 @export var back_and_forth : bool = false 
 
@@ -20,12 +20,16 @@ extends Path2D
 
 @export var spawn_cooldown : float = 30
 
+# add as a child of the node in the editor or else
 @onready var detection_area : Area2D = get_node("Area2D")
+
+# automatically added via code
 @onready var path_follow : PathFollow2D = PathFollow2D.new()
 @onready var spawn_timer : Timer = Timer.new()
 
 @onready var enemy = load(enemy_type)
 
+# A flag to mark the end destination, uses Follow's ratio
 var end_destination : int = 1
 
 var spawned_enemy 
@@ -38,13 +42,17 @@ func _get_configuration_warning() -> String:
 	return ""
 
 func _ready():
+	# added as a child via code
 	add_child(path_follow)
 	add_child(spawn_timer)
+	
+	# setup 
 	spawn_timer.wait_time = spawn_cooldown
 	path_follow.loop = false
 	path_follow.rotates = false
 	path_follow.rotation = 0
 	
+	# Connecting to necessary signals
 	spawn_timer.timeout.connect(func() : can_spawn = true)
 	if detection_area:
 		detection_area.body_entered.connect(func(body) : player_nearby = true)
@@ -57,11 +65,16 @@ func _process(delta):
 		
 func _physics_process(delta):
 	if spawned_enemy:
+		# keep track the old pos for movement delta
 		var old_pos = path_follow.global_position
+		
 		path_follow.progress += walk_speed * delta
+		
+		# update the enemy's facing direction
 		if spawned_enemy.has_method("update_direction"):
 			spawned_enemy.update_direction((path_follow.global_position - old_pos).normalized())
 		
+		# when the enemy reached the end of the path
 		if path_follow.progress_ratio == end_destination:
 			if destroy_on_end:
 				spawned_enemy.queue_free()
@@ -69,6 +82,7 @@ func _physics_process(delta):
 				
 				spawn_timer.start()
 			elif back_and_forth:
+				# walk back to the start
 				walk_speed *= -1
 				end_destination = 0 if end_destination == 1 else 1
 		
@@ -84,12 +98,3 @@ func spawn_enemy():
 	spawned_enemy = new_enemy
 	can_spawn = false
 	
-
-func _on_spawn_timer_timeout():
-	can_spawn = true
-
-func _on_area_2d_body_entered(body):
-	player_nearby = true
-
-func _on_area_2d_body_exited(body):
-	player_nearby = false
