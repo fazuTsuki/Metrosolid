@@ -49,9 +49,9 @@ func _ready():
 func _physics_process(delta):
 	pass
 
-func calculate_engagement(skill : PlayerSkill):
+func calculate_engagement(skill : PlayerIdea):
 	var type = skill.type
-	var coefficient = 1.5 if type == PlayerSkill.TYPE.SET_UP else 1
+	var coefficient = 1.5 if type == idea_type.TYPE.SET_UP else 1
 	
 	var delta_engagement = skill.engagament_point * coefficient
 	if ticklebones.has(skill.joke_type):
@@ -67,9 +67,9 @@ func calculate_engagement(skill : PlayerSkill):
 		delta_engagement * (%EngagementComponent.points_percentage() if delta_engagement > 0 else 1)
 		)
 
-func take_skill(skill : PlayerSkill):
+func take_skill(skill : PlayerIdea):
 	calculate_engagement(skill)
-	if skill.type == PlayerSkill.TYPE.PUNCH_LINE:
+	if skill.type == idea_type.TYPE.PUNCH_LINE:
 		var haha_point = skill.haha_point
 		if cringebones.has(skill.joke_type):
 			%HappyPointsComponent.deduct_point(haha_point)

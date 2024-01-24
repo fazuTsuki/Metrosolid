@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="playerStats" load_steps=12 format=3 uid="uid://c10lsopiajkts"]
+
+[ext_resource type="Script" path="res://Resource/GenericPointSystem.gd" id="1_d2x6f"]
+[ext_resource type="Resource" uid="uid://dyuipawja01rw" path="res://Resource/idea/deez nuts.tres" id="2_2e2kx"]
+[ext_resource type="Resource" uid="uid://cuxe7hpkq2amd" path="res://Resource/idea/eating_at_wendys.tres" id="3_q2k6j"]
+[ext_resource type="Resource" uid="uid://bq4p2gq4uf4ag" path="res://Resource/idea/kenya.tres" id="4_skooq"]
+[ext_resource type="Resource" uid="uid://db4almcftv7d6" path="res://Resource/idea/long.tres" id="5_exglu"]
+[ext_resource type="Script" path="res://Resource/PlayerStats.gd" id="5_lrdhn"]
+[ext_resource type="Resource" uid="uid://dacvg4rwfnvs2" path="res://Resource/idea/sucking.tres" id="6_wimhc"]
+[ext_resource type="Resource" uid="uid://da6sv658c5o7k" path="res://Resource/idea/wife.tres" id="7_on2q7"]
+
+[sub_resource type="Resource" id="Resource_k6aod"]
+script = ExtResource("1_d2x6f")
+max_points = 10.0
+min_points = 0.0
+current_points = 10.0
+
+[sub_resource type="Resource" id="Resource_337l8"]
+script = ExtResource("1_d2x6f")
+max_points = 100.0
+min_points = 1.0
+current_points = 100.0
+
+[sub_resource type="Resource" id="Resource_67be3"]
+script = ExtResource("1_d2x6f")
+max_points = 100000.0
+min_points = 1.0
+current_points = 1.0
+
+[resource]
+script = ExtResource("5_lrdhn")
+level = SubResource("Resource_67be3")
+happy_points = SubResource("Resource_337l8")
+act = SubResource("Resource_k6aod")
+ideas = Array[Resource("res://Resource/idea/player_idea.gd")]([ExtResource("2_2e2kx"), ExtResource("3_q2k6j"), ExtResource("4_skooq"), ExtResource("5_exglu"), ExtResource("6_wimhc"), ExtResource("7_on2q7")])
