@@ -1,8 +1,38 @@
-[gd_scene load_steps=4 format=3 uid="uid://u3uj1y6jo7ry"]
+[gd_scene load_steps=10 format=3 uid="uid://u3uj1y6jo7ry"]
 
 [ext_resource type="Script" path="res://Scenes/Combat/combat_scene.gd" id="1_mplpw"]
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_7je8g"]
-[ext_resource type="Resource" uid="uid://c10lsopiajkts" path="res://Resource/player_stats_example.tres" id="2_7qaf6"]
+[ext_resource type="Resource" uid="uid://c10lsopiajkts" path="res://Resource/example/player_stats_example.tres" id="2_7qaf6"]
+[ext_resource type="Resource" uid="uid://82jredsffv5b" path="res://Resource/example/enemy_stats_example.tres" id="3_6yfnb"]
+[ext_resource type="Script" path="res://Scenes/Combat/combat_manager.gd" id="4_ly14c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_golc8"]
+bg_color = Color(0, 0.509804, 0.286275, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nyluu"]
+bg_color = Color(0, 0.709804, 0.364706, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umgy2"]
+bg_color = Color(0.415686, 0.505882, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35r0j"]
+bg_color = Color(0.580392, 0.643137, 0, 1)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
 
 [node name="CombatScene" type="Control"]
 layout_mode = 3
@@ -13,6 +43,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mplpw")
 player_stats = ExtResource("2_7qaf6")
+enemy_stats = ExtResource("3_6yfnb")
+
+[node name="CombatManager" type="Node" parent="."]
+script = ExtResource("4_ly14c")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -40,6 +74,8 @@ grow_vertical = 2
 [node name="HappyPointProgressBar" type="ProgressBar" parent="EnemyContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_golc8")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nyluu")
 step = 1.0
 value = 50.0
 show_percentage = false
@@ -49,11 +85,14 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "HP: 25/50"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EngagementProgressBar" type="ProgressBar" parent="EnemyContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_umgy2")
+theme_override_styles/fill = SubResource("StyleBoxFlat_35r0j")
 step = 1.0
 value = 50.0
 show_percentage = false
@@ -63,6 +102,7 @@ layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 text = "EG: 25/50"
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Enemy" type="TextureRect" parent="EnemyContainer"]
@@ -150,12 +190,14 @@ size_flags_horizontal = 3
 text = "PLAYER"
 
 [node name="HPProgressBar" type="ProgressBar" parent="PlayerPanel/HBoxContainer/Textbox/PlayerData"]
+custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 50.0
 step = 1.0
 value = 25.0
+show_percentage = false
 
 [node name="Label" type="Label" parent="PlayerPanel/HBoxContainer/Textbox/PlayerData/HPProgressBar"]
 layout_mode = 1

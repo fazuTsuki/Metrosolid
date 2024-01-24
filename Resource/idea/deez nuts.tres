@@ -8,4 +8,6 @@ name = "deez nuts"
 type = 2
 joke_type = Array[int]([0, 2])
 haha_strength = 20.0
+engagement_strength = 0.5
 level = 1
+level_constant = 0.1

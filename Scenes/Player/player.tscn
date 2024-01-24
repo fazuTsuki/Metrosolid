@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://dvdm2idrh4hy0"]
+[gd_scene load_steps=9 format=3 uid="uid://dvdm2idrh4hy0"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_aon1j"]
 [ext_resource type="PackedScene" uid="uid://dcb4al4h1d55m" path="res://Scenes/StateMachine/state_machine.tscn" id="2_5saf3"]
-[ext_resource type="PackedScene" uid="uid://6162lkt5ijhd" path="res://Scenes/Components/HealthComponent/health_component.tscn" id="2_a05gm"]
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_q6sgj"]
-[ext_resource type="Script" path="res://Scenes/Components/GenericStatPointComponent/generic_point_component.gd" id="3_p4q0p"]
 [ext_resource type="Script" path="res://Scenes/StateMachine/state.gd" id="4_l1yd2"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fj4wr"]
@@ -32,8 +30,12 @@ func _on_health_component_health_depleted():
 	transitioning.emit(\"PlayerDeadState\")
 "
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_4waff"]
+radius = 66.0303
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_aon1j")
+speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_q6sgj")
@@ -49,19 +51,6 @@ anim_player = NodePath("..")
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_35uxo")
 
-[node name="HealthComponent" parent="." instance=ExtResource("2_a05gm")]
-unique_name_in_owner = true
-
-[node name="ActCounterComponent" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3_p4q0p")
-
-[node name="LevelComponent" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("3_p4q0p")
-max_point = 10000.0
-min_point = 1.0
-
 [node name="StateMachine" parent="." node_paths=PackedStringArray("initial_state") instance=ExtResource("2_5saf3")]
 unique_name_in_owner = true
 initial_state = NodePath("PlayerDefaultState")
@@ -75,4 +64,12 @@ script = ExtResource("4_l1yd2")
 [node name="PlayerCombatState" type="Node" parent="StateMachine"]
 script = ExtResource("4_l1yd2")
 
-[connection signal="health_depleted" from="HealthComponent" to="StateMachine/PlayerDefaultState" method="_on_health_component_health_depleted"]
+[node name="interactedArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactedArea"]
+shape = SubResource("CircleShape2D_4waff")
+
+[connection signal="area_entered" from="interactedArea" to="." method="_on_interacted_area_area_entered"]
+[connection signal="area_exited" from="interactedArea" to="." method="_on_interacted_area_area_exited"]
