@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" path="res://Scenes/Enemies/EnemyVariants/enemy.gd" id="1_bpoia"]
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_evtd6"]
-[ext_resource type="Script" path="res://Scenes/Components/GenericStatPointComponent/generic_point_component.gd" id="2_uppxd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gggmj"]
 
@@ -24,7 +23,10 @@ states/walking/node = SubResource("AnimationNodeStateMachine_25owf")
 states/walking/position = Vector2(645, 100)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_imxfn"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_fa1xa"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_kev06")]
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_130pn"]
+radius = 25.02
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_bpoia")
 
@@ -41,13 +43,9 @@ root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_o7vn1")
 anim_player = NodePath("..")
 
-[node name="HappyPointsComponent" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_uppxd")
-starting_value_max = false
+[node name="InteractionArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
 
-[node name="EngagementComponent" type="Node" parent="."]
-unique_name_in_owner = true
-script = ExtResource("2_uppxd")
-
-[connection signal="points_full" from="HappyPointsComponent" to="." method="_on_happy_points_component_points_full"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource("CircleShape2D_130pn")

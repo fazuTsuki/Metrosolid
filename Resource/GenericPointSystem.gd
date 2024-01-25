@@ -19,9 +19,9 @@ extends  Resource
 		if current_points == max_points : points_full.emit()
 		elif current_points == min_points : points_empty.emit()
 
-signal points_added
+signal points_added(value)
 
-signal points_deducted
+signal points_deducted(value)
 
 signal points_full
 
@@ -29,7 +29,8 @@ signal points_empty
 
 func add_points(delta : float):
 	if delta != 0:
-		points_added.emit() if delta > 0 else points_deducted
+		if delta > 0: points_added.emit(delta)
+		else: points_deducted.emit(delta)
 		current_points += delta
 
 func deduct_points(delta : float):

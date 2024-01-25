@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=5 format=3 uid="uid://82jredsffv5b"]
+
+[ext_resource type="Script" path="res://Resource/GenericPointSystem.gd" id="1_6yky6"]
+[ext_resource type="Script" path="res://Resource/EnemyStats.gd" id="1_d5u66"]
+
+[sub_resource type="Resource" id="Resource_lm6fl"]
+script = ExtResource("1_6yky6")
+max_points = 100.0
+min_points = 0.0
+current_points = 0.0
+
+[sub_resource type="Resource" id="Resource_bx202"]
+script = ExtResource("1_6yky6")
+max_points = 50.0
+min_points = 0.0
+current_points = 0.0
+
+[resource]
+script = ExtResource("1_d5u66")
+level = 1
+happy_points = SubResource("Resource_bx202")
+engagement = SubResource("Resource_lm6fl")
+engagement_threshhold = 40.0
+retention = 10.0
+retention_constant = 0.01
+resistant = 10.0
+resistant_constant = 0.01
+ticklebone = Array[int]([0])
+cringebone = Array[int]([])

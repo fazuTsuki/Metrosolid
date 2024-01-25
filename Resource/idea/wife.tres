@@ -8,4 +8,6 @@ name = "House problem"
 type = 1
 joke_type = Array[int]([1])
 haha_strength = 0.0
+engagement_strength = 4.0
 level = 1
+level_constant = 0.1
