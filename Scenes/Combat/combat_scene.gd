@@ -30,15 +30,22 @@ extends Control
 
 @onready var combat_manager_:combat_manager = $CombatManager
 
+var combat_finished = false
+
 func _ready():
+	enemy_stats = EnemyStats.new(10)
 	player_stats.reset_act()
 	set_up.pressed.connect(_on_button_see_idea.bind(set_up.name))
 	meander.pressed.connect(_on_button_see_idea.bind(meander.name))
 	punchline.pressed.connect(_on_button_see_idea.bind(punchline.name))
-	enemy_stats.engagement.points_added.connect(add_log.bind("npc increased engagement"))
-	enemy_stats.engagement.points_deducted.connect(add_log.bind("npc decreased engagement"))
-	enemy_stats.happy_points.points_added.connect(add_log.bind("npc increased hp"))
-	enemy_stats.happy_points.points_deducted.connect(add_log.bind("npc decreased hp"))
+	enemy_stats.engagement.points_added.connect(add_log_stats_information.bind("npc increased engagement"))
+	enemy_stats.engagement.points_deducted.connect(add_log_stats_information.bind("npc decreased engagement"))
+	enemy_stats.happy_points.points_added.connect(add_log_stats_information.bind("npc increased hp"))
+	enemy_stats.happy_points.points_deducted.connect(add_log_stats_information.bind("npc decreased hp"))
+	player_stats.happy_points.points_added.connect(add_log_stats_information.bind("player increased hp"))
+	player_stats.happy_points.points_deducted.connect(add_log_stats_information.bind("player decreased hp"))
+	player_stats.exp.points_added.connect(add_log_stats_information.bind("player increased exp"))
+	player_stats.signal_level_up.connect(add_log_plain_text.bind("LEVEL UP!!"))
 	enemy_happy_point_progress_bar.max_value = enemy_stats.happy_points.max_points
 	enemy_engagement_progress_bar.max_value = enemy_stats.engagement.max_points
 	player_happy_point_progress_bar.max_value = player_stats.happy_points.max_points
@@ -53,13 +60,21 @@ func show_log():
 	action_panel.visible = false
 	detail_panel.visible = false
 
-
+func _input(event):
+	if event.is_action_pressed("confirm") && combat_finished:
+		pass #insert getting back to the overworld or a game over
 
 func update_enemy_stats():
 	enemy_engagement_progress_bar_label.text = "EG: "+str(int(enemy_stats.engagement.current_points))+"/"+str(enemy_stats.engagement.max_points)
 	enemy_happy_point_progress_bar_label.text = "HP: "+str(int(enemy_stats.happy_points.current_points))+"/"+str(enemy_stats.happy_points.max_points)
 	enemy_happy_point_progress_bar.value = enemy_stats.happy_points.current_points
 	enemy_engagement_progress_bar.value = enemy_stats.engagement.current_points
+	if enemy_stats.engagement.current_points < enemy_stats.engagement_threshhold:
+		enemy_engagement_progress_bar.get_theme_stylebox("background").bg_color = Color("6f6f6f")
+		enemy_engagement_progress_bar.get_theme_stylebox("fill").bg_color = Color("a2a2a2")
+	else:
+		enemy_engagement_progress_bar.get_theme_stylebox("background").bg_color = Color("6a8100")
+		enemy_engagement_progress_bar.get_theme_stylebox("fill").bg_color = Color("94a400")
 
 func update_player_stats():
 	player_happy_point_progress_bar.value = player_stats.happy_points.current_points
@@ -102,7 +117,7 @@ func show_idea(type_of_idea):
 				idea_container.add_child(current_box_container)
 			var button = Button.new()
 			button.name = idea.name
-			#button.flat = true
+			button.flat = true
 			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			button.text = idea.name
 			button.mouse_entered.connect(idea_hover_in.bind(idea))
@@ -124,7 +139,6 @@ func show_idea(type_of_idea):
 
 #run when using an idea
 func use_idea(idea:PlayerIdea):
-	
 	player_stats.act -= 1
 	match idea.type:
 		idea_type.TYPE.SET_UP:
@@ -139,13 +153,35 @@ func use_idea(idea:PlayerIdea):
 	update_player_stats()
 	player_turn()
 	show_log()
-	await get_tree().create_timer(2)
-	back_to_first()
+	await get_tree().create_timer(0.75).timeout
+	erase_log()
+	if player_stats.act == 0:
+		add_log_plain_text("Player act reaches 0")
+		add_log_plain_text("Player is on a limp and the npc departs")
+	elif player_stats.happy_points.current_points == 0:
+		add_log_plain_text("Player is no longer happy...")
+		combat_finished = true
+	elif enemy_stats.happy_points.current_points == enemy_stats.happy_points.max_points:
+		add_log_plain_text("THE NPC IS HAPPY!!!")
+		combat_finished = true
+		player_stats.exp_up(combat_manager_.exp_gain(enemy_stats.level))
+	else:
+		back_to_first()
+		
 
-func add_log(value,from:String):
+func erase_log():
+	for log in log_data.get_children():
+		log.queue_free()
+
+func add_log_plain_text(text:String):
+	var log = Label.new()
+	log.text = text
+	log_data.add_child(log)
+
+func add_log_stats_information(value,from:String):
 	var log = Label.new()
 	var array_from = from.split(" ")
-	log.text = array_from[0] + "'s " + array_from[2] + " " + array_from[1] + " by " + str(value)
+	log.text = array_from[0] + "'s " + array_from[2] + " " + array_from[1] + " by " + str(int(value))
 	log_data.add_child(log)
 
 func back_to_first():
@@ -159,7 +195,12 @@ func back_to_first():
 
 #when hovering to the idea button
 func idea_hover_in(idea:PlayerIdea):
-	detail_text.text = "test " + idea.name
+	var joke_type_string: Array[String]
+	var i = 0
+	for type in type_of_joke.TYPE:
+		if idea.joke_type.has(i): joke_type_string.append(type)
+		i += 1
+	detail_text.text = "level: " + str(idea.level) + " | haha strength: " + str(idea.haha_strength) + " | engagement_strength: " + str(idea.engagement_strength) + " | joke type: " + str(joke_type_string).replace('"',"").replace("[","").replace("]","").replace("_"," ")
 
 #when hovering out of the idea button
 func idea_hover_out():

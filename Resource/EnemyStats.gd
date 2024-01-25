@@ -12,8 +12,26 @@ class_name EnemyStats
 @export var ticklebone: Array[type_of_joke.TYPE]
 @export var cringebone: Array[type_of_joke.TYPE]
 
+func _init(level):
+	self.level = level
+	happy_points = GenericPointSystem.new()
+	engagement = GenericPointSystem.new()
+	happy_points.max_points = float((20 * level) + (randi_range(1,5*level)) - (randi_range(1,5*level)))
+	engagement.max_points = float((20 * level) + (randi_range(1,10*level)) - (randi_range(1,10*level)))
+	engagement_threshhold = (engagement.max_points * 0.1) + (2*level)
+	retention = float((10 * level) + (randi_range(1,5*level)) - (randi_range(1,5*level)))
+	resistant = float((10 * level) + (randi_range(1,5*level)) - (randi_range(1,5*level)))
+	var available_type_of_joke = type_of_joke.TYPE.duplicate()
+	for counter in range(level):
+		var ticklebone_index = randi_range(0, available_type_of_joke.size()-1)
+		ticklebone.append(available_type_of_joke.keys()[ticklebone_index])
+		available_type_of_joke.erase(ticklebone_index)
+		if counter != 0:
+			var cringebone_index = randi_range(0, available_type_of_joke.size())
+			ticklebone.append(available_type_of_joke.keys()[ticklebone_index])
+			available_type_of_joke.erase(ticklebone_index)
+
 func inject_engagement(idea: PlayerIdea, engagement_prior: float):
-	print("inject engagement")
 	var final_engagement = (-20*int(idea.type == idea_type.TYPE.PUNCH_LINE)) + engagement_prior * retention_filter() * detect_ticklebone(idea.joke_type) * detect_cringebone(idea.joke_type)
 	print(engagement_prior)
 	engagement.add_points(final_engagement)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://u3uj1y6jo7ry"]
+[gd_scene load_steps=12 format=3 uid="uid://u3uj1y6jo7ry"]
 
 [ext_resource type="Script" path="res://Scenes/Combat/combat_scene.gd" id="1_mplpw"]
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_7je8g"]
@@ -21,18 +21,24 @@ corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_umgy2"]
-bg_color = Color(0.415686, 0.505882, 0, 1)
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
 corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35r0j"]
-bg_color = Color(0.580392, 0.643137, 0, 1)
+bg_color = Color(0.635294, 0.635294, 0.635294, 1)
 corner_radius_top_left = 100
 corner_radius_top_right = 100
 corner_radius_bottom_right = 100
 corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0olo"]
+bg_color = Color(0, 0.509804, 0.286275, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73kpy"]
+bg_color = Color(0, 0.709804, 0.364706, 1)
 
 [node name="CombatScene" type="Control"]
 layout_mode = 3
@@ -194,6 +200,8 @@ custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_c0olo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_73kpy")
 max_value = 50.0
 step = 1.0
 value = 25.0
@@ -238,8 +246,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DetailPanel" type="NinePatchRect" parent="."]
-visible = false
-custom_minimum_size = Vector2(0, 50)
+custom_minimum_size = Vector2(0, 65)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -259,4 +266,4 @@ offset_right = 37.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "HP: 25/50"
+autowrap_mode = 3
