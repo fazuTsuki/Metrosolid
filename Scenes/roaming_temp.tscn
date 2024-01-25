@@ -1,9 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqrnt77usoelt"]
+[gd_scene load_steps=12 format=3 uid="uid://bqrnt77usoelt"]
 
 [ext_resource type="PackedScene" uid="uid://dvdm2idrh4hy0" path="res://Scenes/Player/player.tscn" id="1_yp02i"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_12j0o"]
+[ext_resource type="Script" path="res://Resource/GenericPointSystem.gd" id="2_n1sds"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="3_p5xki"]
+[ext_resource type="Script" path="res://Resource/PlayerStats.gd" id="3_y5a6t"]
 [ext_resource type="Script" path="res://Scenes/Enemies/overworld_enemy.gd" id="4_5jrqo"]
+
+[sub_resource type="Resource" id="Resource_7118m"]
+script = ExtResource("2_n1sds")
+max_points = 100.0
+min_points = 0.0
+current_points = 100.0
+
+[sub_resource type="Resource" id="Resource_4ye2f"]
+script = ExtResource("2_n1sds")
+max_points = 100.0
+min_points = 0.0
+current_points = 1.0
+
+[sub_resource type="Resource" id="Resource_0o7yw"]
+script = ExtResource("3_y5a6t")
+level = SubResource("Resource_4ye2f")
+happy_points = SubResource("Resource_7118m")
+act = 0
+starting_act = 10
+ideas = Array[Resource("res://Resource/idea/player_idea.gd")]([])
 
 [sub_resource type="Curve2D" id="Curve2D_jj64p"]
 _data = {
@@ -18,7 +40,7 @@ radius = 350.956
 y_sort_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("1_yp02i")]
-speed = 600.0
+player_stats = SubResource("Resource_0o7yw")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -50,8 +72,10 @@ inactive_update_mode = 0
 [node name="OverworldEnemy" type="Path2D" parent="."]
 curve = SubResource("Curve2D_jj64p")
 script = ExtResource("4_5jrqo")
+destroy_on_end = false
+back_and_forth = true
 enemy_type = "res://Scenes/Enemies/EnemyVariants/enemy.tscn"
-spawn_cooldown = 1.0
+spawn_cooldown = 5.0
 
 [node name="Area2D" type="Area2D" parent="OverworldEnemy"]
 position = Vector2(87, 13)

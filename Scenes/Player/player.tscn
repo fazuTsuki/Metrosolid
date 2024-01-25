@@ -35,7 +35,6 @@ radius = 66.0303
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_aon1j")
-speed = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_q6sgj")
@@ -65,7 +64,6 @@ script = ExtResource("4_l1yd2")
 script = ExtResource("4_l1yd2")
 
 [node name="interactedArea" type="Area2D" parent="."]
-collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactedArea"]

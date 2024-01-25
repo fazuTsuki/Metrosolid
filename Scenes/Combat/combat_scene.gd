@@ -1,5 +1,6 @@
 ##this script is only used for the UI for the combat
 ##this script shouldn't or partially should be controlling the games combat logic
+class_name CombatScene
 extends Control
 
 @export var player_stats: playerStats
@@ -164,3 +165,5 @@ func idea_hover_in(idea:PlayerIdea):
 #when hovering out of the idea button
 func idea_hover_out():
 	detail_text.text = ""
+
+func load_player_stats(new_player_stats : playerStats) -> void : player_stats = new_player_stats

@@ -7,6 +7,8 @@ class_name playerStats
 @export var starting_act: int = 10
 @export var ideas: Array[PlayerIdea]
 
+var position_in_overworld : Vector2
+
 func reset_act():
 	act = starting_act
 
