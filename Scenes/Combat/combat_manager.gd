@@ -4,23 +4,23 @@ extends Node
 enum enum_status {start, in_the_joke}
 var joke_status: enum_status = enum_status.start
 
-var queue_idea: Array[PlayerIdea]
+var queue_idea: Array[JokeMaterial]
 
 var punchline_counter: int
 
-func set_up(player:playerStats,idea: PlayerIdea, enemy: EnemyStats):
+func set_up(player:playerStats,idea: JokeMaterial, enemy: EnemyStats):
 	var engagement: float = idea.engagement_from_idea()
 	engagement *= queue_multiply()
 	enemy.inject_engagement(idea,engagement)
 	queue_idea.append(idea)
 
-func meander(player:playerStats,idea: PlayerIdea, enemy: EnemyStats):
+func meander(player:playerStats,idea: JokeMaterial, enemy: EnemyStats):
 	var engagement: float = idea.engagement_from_idea()
 	engagement *= queue_multiply()
 	enemy.inject_engagement(idea,engagement)
 	queue_idea.append(idea)
 	
-func punchline(player:playerStats,idea: PlayerIdea, enemy: EnemyStats):
+func punchline(player:playerStats,idea: JokeMaterial, enemy: EnemyStats):
 	var engagement: float
 	var haha: float
 	if enemy.engagement.current_points >= enemy.engagement_threshhold:

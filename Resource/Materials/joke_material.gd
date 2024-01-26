@@ -3,7 +3,7 @@ Resource used to contains data
 about a player's skill.
 used for combat
 '''
-class_name PlayerIdea
+class_name JokeMaterial
 extends Resource
 
 

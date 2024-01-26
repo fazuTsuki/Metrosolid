@@ -106,11 +106,11 @@ func _on_button_see_idea(type_of_idea):
 		punchline.name:
 			show_idea(idea_type.TYPE.PUNCH_LINE)
 
-#show the ideas in ui
+#show the materials in ui
 func show_idea(type_of_idea):
 	var idea_count: int = 0
 	var current_box_container: HBoxContainer
-	for idea in player_stats.ideas:
+	for idea in player_stats.materials:
 		if idea.type == type_of_idea:
 			if idea_count % 2 == 0:
 				current_box_container = HBoxContainer.new()
@@ -139,7 +139,7 @@ func show_idea(type_of_idea):
 	current_box_container.add_child(button_back)
 
 #run when using an idea
-func use_idea(idea:PlayerIdea):
+func use_idea(idea:JokeMaterial):
 	player_stats.act -= 1
 	match idea.type:
 		idea_type.TYPE.SET_UP:
@@ -195,7 +195,7 @@ func back_to_first():
 		child.queue_free()
 
 #when hovering to the idea button
-func idea_hover_in(idea:PlayerIdea):
+func idea_hover_in(idea:JokeMaterial):
 	var joke_type_string: Array[String]
 	var i = 0
 	for type in type_of_joke.TYPE:

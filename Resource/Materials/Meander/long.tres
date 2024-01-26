@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PlayerIdea" load_steps=2 format=3 uid="uid://db4almcftv7d6"]
 
-[ext_resource type="Script" path="res://Resource/idea/player_idea.gd" id="1_bv2g6"]
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_bv2g6"]
 
 [resource]
 script = ExtResource("1_bv2g6")

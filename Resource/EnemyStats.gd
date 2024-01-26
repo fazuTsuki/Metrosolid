@@ -2,9 +2,19 @@ extends Resource
 class_name EnemyStats
 
 @export var level: int
-@export var happy_points: GenericPointSystem
-@export var engagement: GenericPointSystem
 @export var engagement_threshhold: float
+@export var max_happy_points : float = 100 :
+	set(value):
+		max_happy_points = value
+		if happy_points:
+			happy_points.max_points = value
+
+@export var max_engagement_points : float = 100 :
+	set(value):
+		max_engagement_points = value
+		if engagement:
+			engagement.max_points = value
+
 @export var retention: float
 @export var retention_constant: float = 0.01
 @export var resistant: float
@@ -12,15 +22,23 @@ class_name EnemyStats
 @export var ticklebone: Array[type_of_joke.TYPE]
 @export var cringebone: Array[type_of_joke.TYPE]
 
+var happy_points: GenericPointSystem
+var engagement: GenericPointSystem
+
 func _init(level):
 	self.level = level
+	
 	happy_points = GenericPointSystem.new()
 	engagement = GenericPointSystem.new()
+	
 	happy_points.max_points = float((20 * level) + (randi_range(1,5*level)) - (randi_range(1,5*level)))
 	engagement.max_points = float((20 * level) + (randi_range(1,10*level)) - (randi_range(1,10*level)))
+	
 	engagement_threshhold = (engagement.max_points * 0.1) + (2*level)
+	
 	retention = float((10 * level) + (randi_range(1,5*level)) - (randi_range(1,5*level)))
 	resistant = float((10 * level) + (randi_range(1,5*level)) - (randi_range(1,5*level)))
+	
 	var available_type_of_joke = type_of_joke.TYPE.duplicate()
 	for counter in range(level):
 		var ticklebone_index = randi_range(0, available_type_of_joke.size()-1)
@@ -31,12 +49,12 @@ func _init(level):
 			ticklebone.append(available_type_of_joke.keys()[ticklebone_index])
 			available_type_of_joke.erase(ticklebone_index)
 
-func inject_engagement(idea: PlayerIdea, engagement_prior: float):
+func inject_engagement(idea: JokeMaterial, engagement_prior: float):
 	var final_engagement = (-20*int(idea.type == idea_type.TYPE.PUNCH_LINE)) + engagement_prior * retention_filter() * detect_ticklebone(idea.joke_type) * detect_cringebone(idea.joke_type)
 	print(engagement_prior)
 	engagement.add_points(final_engagement)
 
-func inject_haha(idea: PlayerIdea, haha_prior: float):
+func inject_haha(idea: JokeMaterial, haha_prior: float):
 	var final_haha = haha_prior * resistant_filter() * detect_ticklebone(idea.joke_type) * detect_cringebone(idea.joke_type) * engagement_multiply()
 	happy_points.add_points(final_haha)
 

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PlayerIdea" load_steps=2 format=3 uid="uid://da6sv658c5o7k"]
 
-[ext_resource type="Script" path="res://Resource/idea/player_idea.gd" id="1_5t5nw"]
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_ihvrr"]
 
 [resource]
-script = ExtResource("1_5t5nw")
+script = ExtResource("1_ihvrr")
 name = "House problem"
 type = 1
 joke_type = Array[int]([1])
@@ -11,3 +11,4 @@ haha_strength = 0.0
 engagement_strength = 4.0
 level = 1
 level_constant = 0.1
+level_up_in_multiplicative = 2

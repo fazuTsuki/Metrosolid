@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="playerStats" load_steps=11 format=3 uid="uid://c10lsopiajkts"]
 
 [ext_resource type="Script" path="res://Resource/GenericPointSystem.gd" id="1_d2x6f"]
-[ext_resource type="Resource" uid="uid://dyuipawja01rw" path="res://Resource/idea/deez nuts.tres" id="2_2e2kx"]
-[ext_resource type="Resource" uid="uid://cuxe7hpkq2amd" path="res://Resource/idea/eating_at_wendys.tres" id="3_q2k6j"]
-[ext_resource type="Resource" uid="uid://bq4p2gq4uf4ag" path="res://Resource/idea/kenya.tres" id="4_skooq"]
-[ext_resource type="Resource" uid="uid://db4almcftv7d6" path="res://Resource/idea/long.tres" id="5_exglu"]
+[ext_resource type="Resource" uid="uid://dyuipawja01rw" path="res://Resource/Materials/PunchLine/deez nuts.tres" id="2_2e2kx"]
+[ext_resource type="Resource" uid="uid://cuxe7hpkq2amd" path="res://Resource/Materials/SetUp/eating_at_wendys.tres" id="3_q2k6j"]
+[ext_resource type="Resource" uid="uid://bq4p2gq4uf4ag" path="res://Resource/Materials/SetUp/kenya.tres" id="4_skooq"]
+[ext_resource type="Resource" uid="uid://db4almcftv7d6" path="res://Resource/Materials/Meander/long.tres" id="5_exglu"]
 [ext_resource type="Script" path="res://Resource/PlayerStats.gd" id="5_lrdhn"]
-[ext_resource type="Resource" uid="uid://dacvg4rwfnvs2" path="res://Resource/idea/sucking.tres" id="6_wimhc"]
-[ext_resource type="Resource" uid="uid://da6sv658c5o7k" path="res://Resource/idea/wife.tres" id="7_on2q7"]
+[ext_resource type="Resource" uid="uid://dacvg4rwfnvs2" path="res://Resource/Materials/PunchLine/sucking.tres" id="6_wimhc"]
+[ext_resource type="Resource" uid="uid://da6sv658c5o7k" path="res://Resource/Materials/Meander/wife.tres" id="7_on2q7"]
 
 [sub_resource type="Resource" id="Resource_c0525"]
 script = ExtResource("1_d2x6f")

@@ -12,6 +12,7 @@ level = 0
 max_happy_points = 100.0
 act = 0
 starting_act = 10
+materials = Array[Resource("res://Resource/Materials/joke_material.gd")]([])
 flat_exp = 0.0
 max_flat_exp = 0.0
 
