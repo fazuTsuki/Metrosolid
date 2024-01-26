@@ -16,6 +16,7 @@ extends Resource
 
 @export_category("constant")
 @export var level_constant: float = 0.1
+@export var level_up_in_multiplicative: int = 2
 
 #engagement
 func engagement_from_idea() -> float:
@@ -27,3 +28,7 @@ func haha_from_idea() -> float:
 
 func level_multiply() -> float:
 	return 1 + (level * level_constant)
+
+func check_player_level(player_level: int):
+	if player_level % level_up_in_multiplicative == 0:
+		level += 1
