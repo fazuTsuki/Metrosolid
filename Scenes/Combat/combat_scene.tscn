@@ -1,9 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://u3uj1y6jo7ry"]
+[gd_scene load_steps=10 format=3 uid="uid://u3uj1y6jo7ry"]
 
 [ext_resource type="Script" path="res://Scenes/Combat/combat_scene.gd" id="1_mplpw"]
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_7je8g"]
-[ext_resource type="Resource" uid="uid://c10lsopiajkts" path="res://Resource/example/player_stats_example.tres" id="2_7qaf6"]
-[ext_resource type="Resource" uid="uid://82jredsffv5b" path="res://Resource/example/enemy_stats_example.tres" id="3_6yfnb"]
 [ext_resource type="Script" path="res://Scenes/Combat/combat_manager.gd" id="4_ly14c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_golc8"]
@@ -48,8 +46,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mplpw")
-player_stats = ExtResource("2_7qaf6")
-enemy_stats = ExtResource("3_6yfnb")
 
 [node name="CombatManager" type="Node" parent="."]
 script = ExtResource("4_ly14c")

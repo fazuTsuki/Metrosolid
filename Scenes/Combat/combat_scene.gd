@@ -3,10 +3,6 @@
 class_name CombatScene
 extends Control
 
-@export var player_stats: playerStats
-@export var enemy_stats: EnemyStats
-
-
 @onready var set_up = $"PlayerPanel/HBoxContainer/ActionPanel/Actions/Set Up"
 @onready var meander = $PlayerPanel/HBoxContainer/ActionPanel/Actions/Meander
 @onready var punchline = $PlayerPanel/HBoxContainer/ActionPanel/Actions/Punchline
@@ -31,10 +27,19 @@ extends Control
 
 @onready var combat_manager_:combat_manager = $CombatManager
 
+var player_stats: playerStats
+var enemy_stats: EnemyStats
+
 var combat_finished = false
 
 func _ready():
-	enemy_stats = EnemyStats.new(10)
+
+	if !player_stats:
+		player_stats = ResourceLoader.load("res://Resource/example/player_stats_example.tres")
+		
+	if !enemy_stats:
+		enemy_stats = ResourceLoader.load("res://Resource/example/enemy_stats_example.tres")
+
 	player_stats.reset_act()
 	set_up.pressed.connect(_on_button_see_idea.bind(set_up.name))
 	meander.pressed.connect(_on_button_see_idea.bind(meander.name))

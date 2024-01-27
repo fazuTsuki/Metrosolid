@@ -18,6 +18,9 @@ extends Resource
 @export var level_constant: float = 0.1
 @export var level_up_in_multiplicative: int = 2
 
+@export_category("Dialogue")
+@export var dialogue : String = "deez skibidi nut fanum tax"
+
 #engagement
 func engagement_from_idea() -> float:
 	return engagement_strength * level_multiply()

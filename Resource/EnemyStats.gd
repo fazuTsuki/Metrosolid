@@ -1,8 +1,8 @@
 extends Resource
 class_name EnemyStats
 
-@export var level: int
-@export var engagement_threshhold: float
+@export var level: int = 1
+@export var engagement_threshhold: float = 1
 @export var max_happy_points : float = 100 :
 	set(value):
 		max_happy_points = value
@@ -25,8 +25,7 @@ class_name EnemyStats
 var happy_points: GenericPointSystem
 var engagement: GenericPointSystem
 
-func _init(level):
-	self.level = level
+func _init():
 	
 	happy_points = GenericPointSystem.new()
 	engagement = GenericPointSystem.new()
@@ -39,15 +38,15 @@ func _init(level):
 	retention = float((10 * level) + (randi_range(1,5*level)) - (randi_range(1,5*level)))
 	resistant = float((10 * level) + (randi_range(1,5*level)) - (randi_range(1,5*level)))
 	
-	var available_type_of_joke = type_of_joke.TYPE.duplicate()
-	for counter in range(level):
-		var ticklebone_index = randi_range(0, available_type_of_joke.size()-1)
-		ticklebone.append(available_type_of_joke.keys()[ticklebone_index])
-		available_type_of_joke.erase(ticklebone_index)
-		if counter != 0:
-			var cringebone_index = randi_range(0, available_type_of_joke.size())
-			ticklebone.append(available_type_of_joke.keys()[ticklebone_index])
-			available_type_of_joke.erase(ticklebone_index)
+	#var available_type_of_joke = type_of_joke.TYPE.duplicate()
+	#for counter in range(level):
+		#var ticklebone_index = randi_range(0, available_type_of_joke.size()-1)
+		#ticklebone.append(available_type_of_joke.keys()[ticklebone_index])
+		#available_type_of_joke.erase(ticklebone_index)
+		#if counter != 0:
+			#var cringebone_index = randi_range(0, available_type_of_joke.size())
+			#ticklebone.append(available_type_of_joke.keys()[ticklebone_index])
+			#available_type_of_joke.erase(ticklebone_index)
 
 func inject_engagement(idea: JokeMaterial, engagement_prior: float):
 	var final_engagement = (-20*int(idea.type == idea_type.TYPE.PUNCH_LINE)) + engagement_prior * retention_filter() * detect_ticklebone(idea.joke_type) * detect_cringebone(idea.joke_type)

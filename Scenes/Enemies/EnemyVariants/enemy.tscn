@@ -4,18 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_evtd6"]
 [ext_resource type="Script" path="res://Resource/EnemyStats.gd" id="3_eshr8"]
 
-[sub_resource type="Resource" id="Resource_1brm1"]
+[sub_resource type="Resource" id="Resource_j8wxq"]
 script = ExtResource("3_eshr8")
 level = 1
-engagement_threshhold = 20.0
+engagement_threshhold = 1.0
 max_happy_points = 100.0
 max_engagement_points = 100.0
-retention = 3.0
+retention = 0.0
 retention_constant = 0.01
-resistant = 5.0
+resistant = 0.0
 resistant_constant = 0.01
-ticklebone = Array[int]([0])
-cringebone = Array[int]([2])
+ticklebone = Array[int]([])
+cringebone = Array[int]([])
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gggmj"]
 
@@ -43,7 +43,7 @@ radius = 25.02
 [node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 2
 script = ExtResource("1_bpoia")
-enemy_stats = SubResource("Resource_1brm1")
+enemy_stats = SubResource("Resource_j8wxq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_gggmj")

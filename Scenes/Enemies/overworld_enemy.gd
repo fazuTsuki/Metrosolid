@@ -15,8 +15,9 @@ extends Path2D
 # should be mutually exclusive with destoy on end
 @export var back_and_forth : bool = false 
 
+@export_category("Enemy")
 #the path to the enemy or its variant secene
-@export var enemy_type : String
+@export var enemy_type : PackedScene
 
 @export var spawn_cooldown : float = 30
 
@@ -26,8 +27,6 @@ extends Path2D
 # automatically added via code
 @onready var path_follow : PathFollow2D = PathFollow2D.new()
 @onready var spawn_timer : Timer = Timer.new()
-
-@onready var enemy = load(enemy_type)
 
 # A flag to mark the end destination, uses Follow's ratio
 var end_destination : int = 1
@@ -91,7 +90,7 @@ func spawn_enemy():
 	path_follow.progress = 0
 	
 	#setting up the enemy
-	var new_enemy = enemy.instantiate()
+	var new_enemy = enemy_type.instantiate()
 	new_enemy.global_position = path_follow.global_position
 	path_follow.add_child(new_enemy)
 	

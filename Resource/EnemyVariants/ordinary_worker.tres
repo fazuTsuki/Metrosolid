@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://d4jldasllggx4"]
+
+[ext_resource type="Script" path="res://Resource/EnemyStats.gd" id="1_ytc8l"]
+
+[resource]
+script = ExtResource("1_ytc8l")
+level = 1
+engagement_threshhold = 10.0
+max_happy_points = 100.0
+max_engagement_points = 100.0
+retention = 10.0
+retention_constant = 0.01
+resistant = 10.0
+resistant_constant = 0.01
+ticklebone = Array[int]([2])
+cringebone = Array[int]([3])
