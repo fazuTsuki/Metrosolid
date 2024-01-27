@@ -91,10 +91,7 @@ func spawn_enemy():
 	
 	#setting up the enemy
 	var new_enemy = enemy_type.instantiate()
-	new_enemy.global_position = path_follow.position
 	path_follow.add_child(new_enemy)
-	print_debug("SPAWN!")
-	
 	spawned_enemy = new_enemy
 	can_spawn = false
 	

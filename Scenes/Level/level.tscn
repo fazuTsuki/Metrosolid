@@ -1,11 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dnb817hciwevg"]
+[gd_scene load_steps=15 format=3 uid="uid://dnb817hciwevg"]
 
 [ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_616r3"]
 [ext_resource type="Shader" path="res://Scenes/Level/level.gdshader" id="1_ntgkm"]
 [ext_resource type="Texture2D" uid="uid://swnl8dyo57pi" path="res://Assets/Environment/FloorTileset.png" id="1_ykfws"]
-[ext_resource type="PackedScene" uid="uid://dvdm2idrh4hy0" path="res://Scenes/Player/player.tscn" id="2_d7cte"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="3_t4veo"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2D.gd" id="4_5wcxh"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_r1d35"]
 [ext_resource type="Script" path="res://Scenes/Enemies/overworld_enemy.gd" id="6_eqf06"]
 [ext_resource type="PackedScene" uid="uid://cmgalpfdeosh3" path="res://Scenes/Enemies/EnemyVariants/ordinary_worker.tscn" id="7_8vfjr"]
 
@@ -75,9 +75,15 @@ texture = ExtResource("1_ykfws")
 [sub_resource type="TileSet" id="TileSet_xtomy"]
 sources/0 = SubResource("TileSetAtlasSource_v15gq")
 
+[sub_resource type="Resource" id="Resource_y2q1e"]
+script = ExtResource("5_r1d35")
+duration = 1.0
+transition = 1
+ease = 2
+
 [sub_resource type="Curve2D" id="Curve2D_67w43"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, -2, 3, 0, 0, 0, 0, 0, -334)
+"points": PackedVector2Array(0, 0, 0, 0, 254, -110, 0, 0, 0, 0, 262, -531)
 }
 point_count = 2
 
@@ -93,26 +99,24 @@ z_index = -1
 z_as_relative = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_01ms8")
+position = Vector2(-87, 15)
 scale = Vector2(1.5, 1.5)
 tile_set = SubResource("TileSet_xtomy")
 format = 2
 layer_0/name = "Floor"
 layer_0/tile_data = PackedInt32Array(-262142, 393216, 2, -655359, 327680, 2, -524278, 262144, 0, -458742, 262144, 1, -393206, 262144, 2, -524277, 327680, 0, -458741, 327680, 1, -393205, 327680, 2, -524276, 393216, 0, -458740, 393216, 1, -393204, 393216, 2, -720886, 262144, 0, -655350, 262144, 1, -589814, 262144, 2, -720885, 327680, 0, -655349, 327680, 1, -589813, 327680, 2, -720884, 393216, 0, -655348, 393216, 1, -589812, 393216, 2, -917494, 262144, 0, -851958, 262144, 1, -786422, 262144, 2, -917493, 327680, 0, -851957, 327680, 1, -786421, 327680, 2, -917492, 393216, 0, -851956, 393216, 1, -786420, 393216, 2, -1114102, 262144, 0, -1048566, 262144, 1, -983030, 262144, 2, -1114101, 327680, 0, -1048565, 327680, 1, -983029, 327680, 2, -1114100, 393216, 0, -1048564, 393216, 1, -983028, 393216, 2, -1310710, 262144, 0, -1245174, 262144, 1, -1179638, 262144, 2, -1310709, 327680, 0, -1245173, 327680, 1, -1179637, 327680, 2, -1310708, 393216, 0, -1245172, 393216, 1, -1179636, 393216, 2, -1507318, 262144, 0, -1441782, 262144, 1, -1376246, 262144, 2, -1507317, 327680, 0, -1441781, 327680, 1, -1376245, 327680, 2, -1507316, 393216, 0, -1441780, 393216, 1, -1376244, 393216, 2, -1507315, 0, 1, -1441779, 0, 2, -1507314, 65536, 1, -1441778, 65536, 2, -1376243, 0, 1, -1310707, 0, 2, -1376242, 65536, 1, -1310706, 65536, 2, -1245171, 0, 1, -1179635, 0, 2, -1245170, 65536, 1, -1179634, 65536, 2, -1114099, 0, 1, -1048563, 0, 2, -1114098, 65536, 1, -1048562, 65536, 2, -983027, 0, 1, -917491, 0, 2, -983026, 65536, 1, -917490, 65536, 2, -851955, 0, 1, -786419, 0, 2, -851954, 65536, 1, -786418, 65536, 2, -720883, 0, 1, -655347, 0, 2, -720882, 65536, 1, -655346, 65536, 2, -589811, 0, 1, -524275, 0, 2, -589810, 65536, 1, -524274, 65536, 2, -458739, 0, 1, -393203, 0, 2, -458738, 65536, 1, -393202, 65536, 2, -458744, 131072, 1, -393208, 131072, 2, -458743, 196608, 1, -393207, 196608, 2, -589816, 131072, 1, -524280, 131072, 2, -589815, 196608, 1, -524279, 196608, 2, -720888, 131072, 1, -655352, 131072, 2, -720887, 196608, 1, -655351, 196608, 2, -851960, 131072, 1, -786424, 131072, 2, -851959, 196608, 1, -786423, 196608, 2, -983032, 131072, 1, -917496, 131072, 2, -983031, 196608, 1, -917495, 196608, 2, -1114104, 131072, 1, -1048568, 131072, 2, -1114103, 196608, 1, -1048567, 196608, 2, -1245176, 131072, 1, -1179640, 131072, 2, -1245175, 196608, 1, -1179639, 196608, 2, -1376248, 131072, 1, -1310712, 131072, 2, -1376247, 196608, 1, -1310711, 196608, 2, -1507320, 131072, 1, -1441784, 131072, 2, -1507319, 196608, 1, -1441783, 196608, 2)
 
-[node name="Player" parent="." instance=ExtResource("2_d7cte")]
-z_index = 1
-position = Vector2(2, -176)
-speed = 100.0
-
 [node name="PhantomCamera2D" type="Node2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(2, -176)
 script = ExtResource("4_5wcxh")
 priority_override = false
 priority = 0
 zoom = Vector2(1, 1)
 follow_mode = 1
-follow_target = NodePath("../Player")
-follow_parameters/damping = false
+follow_target = NodePath("")
+follow_parameters/damping = true
+follow_parameters/damping_value = 5.0
 frame_preview = true
 pixel_perfect = false
 limit/draw_limits = false
@@ -122,7 +126,7 @@ limit/right = 10000000
 limit/bottom = 10000000
 limit/limit_node_target = NodePath("")
 limit/smoothed = false
-tween_parameters = null
+tween_parameters = SubResource("Resource_y2q1e")
 tween_on_load = true
 inactive_update_mode = 0
 
@@ -133,7 +137,6 @@ position = Vector2(2, -176)
 script = ExtResource("3_t4veo")
 
 [node name="OverworldEnemy" type="Path2D" parent="." node_paths=PackedStringArray("detection_area")]
-position = Vector2(100, 0)
 curve = SubResource("Curve2D_67w43")
 script = ExtResource("6_eqf06")
 walk_speed = 60.0
@@ -144,8 +147,12 @@ spawn_cooldown = 5.0
 detection_area = NodePath("Area2D")
 
 [node name="Area2D" type="Area2D" parent="OverworldEnemy"]
-position = Vector2(-4, 2)
+position = Vector2(257, -120)
 collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldEnemy/Area2D"]
 shape = SubResource("CircleShape2D_w0h8n")
+
+[node name="SpawnAnchor" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(117, -302)

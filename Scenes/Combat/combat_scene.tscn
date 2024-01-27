@@ -274,6 +274,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="DetailPanel" type="NinePatchRect" parent="."]
+visible = false
 custom_minimum_size = Vector2(0, 65)
 layout_mode = 1
 anchors_preset = 10
@@ -301,3 +302,5 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_ld800")
 autowrap_mode = 3
+
+[connection signal="pressed" from="PlayerPanel/HBoxContainer/ActionPanel/Actions/Escape" to="." method="_on_escape_pressed"]

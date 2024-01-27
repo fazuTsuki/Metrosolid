@@ -6,7 +6,8 @@ func _ready():
 
 func set_state():
 	var player_level = GameManager.player_stats.level
-	enemy_stats = EnemyStats.new(player_level + randi_range(-1,1))
+	enemy_stats = EnemyStats.new(clamp(player_level + randi_range(-1,1),1,1000))
+
 
 func _physics_process(delta):
 	animation_tree["parameters/conditions/idle"] = false

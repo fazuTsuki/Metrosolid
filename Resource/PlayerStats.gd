@@ -22,9 +22,8 @@ var exp: GenericPointSystem
 func _init():
 	happy_points = GenericPointSystem.new()
 	exp = GenericPointSystem.new()
-	
+	exp.max_points = 10
 	happy_points.reset_to_min = false
-	
 	load_joke_materials()
 
 func load_joke_materials():
@@ -50,14 +49,13 @@ func load_joke_materials():
 	
 
 func exp_up(exp):
+	print_debug(exp)
 	var exp_remainder = exp+self.exp.current_points - self.exp.max_points
 	self.exp.add_points(exp)
-	if exp_remainder >= 0:
-		while exp_remainder < 0:
-			level_up(exp_remainder)
-			exp_remainder -= self.exp.max_points
-
-var position_in_overworld : Vector2
+	while exp_remainder >= 0:
+		level_up(exp_remainder)
+		exp_remainder -= self.exp.max_points
+		print_debug(level)
 
 func reset_act():
 	act = starting_act
@@ -65,6 +63,7 @@ func reset_act():
 func level_up(exp_remainder: float):
 	level += 1
 	happy_points.max_points += 10
+	happy_points.reset_points()
 	var isLevelEven = int(level % 2 == 0)
 	starting_act += 1 * isLevelEven
 	for material in materials:

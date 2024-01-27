@@ -31,7 +31,6 @@ func _physics_process(delta):
 
 func _input(event):
 	if event.is_action_pressed("confirm") && enemy_in_interacted_area != null:
-		player_stats.position_in_overworld = global_position
 		GameManager.change_scene_to_combat(get_parent(), enemy_in_interacted_area.enemy_stats)
 		
 

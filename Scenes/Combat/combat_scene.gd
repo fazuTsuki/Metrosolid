@@ -33,7 +33,6 @@ var enemy_stats: EnemyStats
 var combat_finished = false
 
 func _ready():
-	enemy_stats = EnemyStats.new(1)
 	
 	if !player_stats:
 		player_stats = ResourceLoader.load("res://Resource/example/player_stats_example.tres")
@@ -52,7 +51,7 @@ func _ready():
 	
 	enemy_stats.happy_points.points_full.connect(func()->void:
 		get_tree().create_timer(2.0).timeout.connect(func()->void:
-			GameManager.chnage_to_overworld())
+			GameManager.change_to_overworld(player_stats))
 		)
 	player_stats.happy_points.points_added.connect(add_log_stats_information.bind("player increased hp"))
 	player_stats.happy_points.points_deducted.connect(add_log_stats_information.bind("player decreased hp"))
@@ -238,3 +237,10 @@ func idea_hover_out():
 	detail_text.text = ""
 
 func load_player_stats(new_player_stats : playerStats) -> void : player_stats = new_player_stats
+
+
+func _on_escape_pressed():
+	show_log()
+	add_log_plain_text("Player has escape.")
+	get_tree().create_timer(2.0).timeout.connect(func()->void:GameManager.change_to_overworld(player_stats))
+	pass # Replace with function body.
