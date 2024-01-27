@@ -1,16 +1,18 @@
-[gd_resource type="Resource" script_class="EnemyStats" load_steps=2 format=3 uid="uid://d4jldasllggx4"]
+[gd_resource type="Resource" script_class="EnemyStats" load_steps=3 format=3 uid="uid://d4jldasllggx4"]
 
+[ext_resource type="Texture2D" uid="uid://rlqyky23jp35" path="res://Assets/Enemy/enemy_potrait.png" id="1_o1n42"]
 [ext_resource type="Script" path="res://Resource/EnemyStats.gd" id="1_ytc8l"]
 
 [resource]
 script = ExtResource("1_ytc8l")
+potrait_combat = ExtResource("1_o1n42")
 level = 1
 engagement_threshhold = 10.0
-max_happy_points = 100.0
-max_engagement_points = 100.0
-retention = 10.0
+max_happy_points = 20.0
+max_engagement_points = 20.0
+retention = 5.0
 retention_constant = 0.01
-resistant = 10.0
+resistant = 5.0
 resistant_constant = 0.01
 ticklebone = Array[int]([2])
 cringebone = Array[int]([3])

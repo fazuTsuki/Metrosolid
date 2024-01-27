@@ -22,7 +22,7 @@ extends Path2D
 @export var spawn_cooldown : float = 30
 
 # add as a child of the node in the editor or else
-@onready var detection_area : Area2D = get_node("Area2D")
+@export var detection_area : Area2D 
 
 # automatically added via code
 @onready var path_follow : PathFollow2D = PathFollow2D.new()
@@ -91,8 +91,9 @@ func spawn_enemy():
 	
 	#setting up the enemy
 	var new_enemy = enemy_type.instantiate()
-	new_enemy.global_position = path_follow.global_position
+	new_enemy.global_position = path_follow.position
 	path_follow.add_child(new_enemy)
+	print_debug("SPAWN!")
 	
 	spawned_enemy = new_enemy
 	can_spawn = false

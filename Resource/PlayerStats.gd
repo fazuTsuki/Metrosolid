@@ -14,12 +14,10 @@ signal signal_level_up
 			happy_points.reset_points()
 @export var act: int
 @export var starting_act: int = 10
-@export var flat_exp:float
-@export var max_flat_exp:float
 
 var materials: Array[JokeMaterial] = []
 var happy_points: GenericPointSystem
-var exp: GenericPointSystem 
+var exp: GenericPointSystem
 
 func _init():
 	happy_points = GenericPointSystem.new()
@@ -52,10 +50,12 @@ func load_joke_materials():
 	
 
 func exp_up(exp):
-	flat_exp += exp
+	var exp_remainder = exp+self.exp.current_points - self.exp.max_points
 	self.exp.add_points(exp)
-	while flat_exp >= max_flat_exp:
-		level_up(flat_exp - max_flat_exp)
+	if exp_remainder >= 0:
+		while exp_remainder < 0:
+			level_up(exp_remainder)
+			exp_remainder -= self.exp.max_points
 
 var position_in_overworld : Vector2
 
@@ -67,9 +67,10 @@ func level_up(exp_remainder: float):
 	happy_points.max_points += 10
 	var isLevelEven = int(level % 2 == 0)
 	starting_act += 1 * isLevelEven
-	exp.max_points *= 2
-	max_flat_exp += exp.max_points
-	exp.current_points = exp_remainder
 	for material in materials:
 		material.check_player_level(level)
+	#exp
+	exp.max_points *= 2
+	exp.current_points = exp_remainder
+	
 	signal_level_up.emit()

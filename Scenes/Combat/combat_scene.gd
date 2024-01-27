@@ -33,7 +33,8 @@ var enemy_stats: EnemyStats
 var combat_finished = false
 
 func _ready():
-
+	enemy_stats = EnemyStats.new(1)
+	
 	if !player_stats:
 		player_stats = ResourceLoader.load("res://Resource/example/player_stats_example.tres")
 		
@@ -48,6 +49,11 @@ func _ready():
 	enemy_stats.engagement.points_deducted.connect(add_log_stats_information.bind("npc decreased engagement"))
 	enemy_stats.happy_points.points_added.connect(add_log_stats_information.bind("npc increased hp"))
 	enemy_stats.happy_points.points_deducted.connect(add_log_stats_information.bind("npc decreased hp"))
+	
+	enemy_stats.happy_points.points_full.connect(func()->void:
+		get_tree().create_timer(2.0).timeout.connect(func()->void:
+			GameManager.chnage_to_overworld())
+		)
 	player_stats.happy_points.points_added.connect(add_log_stats_information.bind("player increased hp"))
 	player_stats.happy_points.points_deducted.connect(add_log_stats_information.bind("player decreased hp"))
 	player_stats.exp.points_added.connect(add_log_stats_information.bind("player increased exp"))
@@ -225,12 +231,7 @@ func back_to_first():
 
 #when hovering to the idea button
 func idea_hover_in(idea:JokeMaterial):
-	var joke_type_string: Array[String]
-	var i = 0
-	for type in type_of_joke.TYPE:
-		if idea.joke_type.has(i): joke_type_string.append(type)
-		i += 1
-	detail_text.text = "level: " + str(idea.level) + " | haha strength: " + str(idea.haha_strength) + " | engagement_strength: " + str(idea.engagement_strength) + " | joke type: " + str(joke_type_string).replace('"',"").replace("[","").replace("]","").replace("_"," ")
+	detail_text.text = "\"" + idea.dialogue + "\""
 
 #when hovering out of the idea button
 func idea_hover_out():

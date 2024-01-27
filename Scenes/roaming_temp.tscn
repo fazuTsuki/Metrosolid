@@ -13,8 +13,6 @@ level = 0
 max_happy_points = 100.0
 act = 0
 starting_act = 10
-flat_exp = 0.0
-max_flat_exp = 0.0
 
 [sub_resource type="Curve2D" id="Curve2D_jj64p"]
 _data = {
@@ -32,6 +30,7 @@ y_sort_enabled = true
 player_stats = SubResource("Resource_hkv1g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 script = ExtResource("2_12j0o")
@@ -40,7 +39,7 @@ script = ExtResource("2_12j0o")
 script = ExtResource("3_p5xki")
 priority_override = false
 priority = 0
-zoom = Vector2(1, 1)
+zoom = Vector2(3, 3)
 follow_mode = 1
 follow_target = NodePath("../Player")
 follow_parameters/damping = true
@@ -58,13 +57,14 @@ tween_parameters = null
 tween_on_load = true
 inactive_update_mode = 0
 
-[node name="OverworldEnemy" type="Path2D" parent="."]
+[node name="OverworldEnemy" type="Path2D" parent="." node_paths=PackedStringArray("detection_area")]
 curve = SubResource("Curve2D_jj64p")
 script = ExtResource("4_5jrqo")
 destroy_on_end = false
 back_and_forth = true
 enemy_type = ExtResource("6_vlow1")
 spawn_cooldown = 5.0
+detection_area = NodePath("Area2D")
 
 [node name="Area2D" type="Area2D" parent="OverworldEnemy"]
 position = Vector2(87, 13)

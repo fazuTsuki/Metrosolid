@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cnkc6m6026d6e"]
+[gd_scene load_steps=7 format=3 uid="uid://cnkc6m6026d6e"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/EnemyVariants/enemy.gd" id="1_bpoia"]
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_evtd6"]
@@ -19,24 +19,6 @@ cringebone = Array[int]([])
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gggmj"]
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_8s10m"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_25owf"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_imxfn"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fa1xa"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kev06"]
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o7vn1"]
-states/idle/node = SubResource("AnimationNodeStateMachine_8s10m")
-states/idle/position = Vector2(394, 100)
-states/walking/node = SubResource("AnimationNodeStateMachine_25owf")
-states/walking/position = Vector2(645, 100)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_imxfn"), "idle", "walking", SubResource("AnimationNodeStateMachineTransition_fa1xa"), "walking", "idle", SubResource("AnimationNodeStateMachineTransition_kev06")]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_130pn"]
 radius = 25.02
 
@@ -54,8 +36,8 @@ texture = ExtResource("2_evtd6")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+active = false
 root_node = NodePath("../..")
-tree_root = SubResource("AnimationNodeStateMachine_o7vn1")
 anim_player = NodePath("..")
 
 [node name="InteractionArea" type="Area2D" parent="."]

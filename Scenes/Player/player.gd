@@ -2,33 +2,38 @@ class_name Player
 extends CharacterBody2D
 
 @export var player_stats: playerStats
-@export var speed : float = 600
+@export var speed : float = 400
 var enemy_in_interacted_area
+@onready var animation_tree = $AnimationPlayer/AnimationTree
+
+func _ready():
+	animation_tree.active = true
 
 func moving():
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction.normalized() *  speed
 	move_and_slide()
+	return direction
 
 func _process(delta):
-	%StateMachine.update(delta)
+	pass
 	
 func _physics_process(delta):
-	%StateMachine.physics_update(delta)
+	var direction = moving()
+	if direction == Vector2.ZERO:
+		animation_tree["parameters/conditions/is_moving"] = false
+		animation_tree["parameters/conditions/idle"] = true
+	else:
+		animation_tree["parameters/conditions/idle"] = false
+		animation_tree["parameters/conditions/is_moving"] = true
+		animation_tree["parameters/idle/blend_position"] = direction
+		animation_tree["parameters/walk/blend_position"] = direction
 
 func _input(event):
 	if event.is_action_pressed("confirm") && enemy_in_interacted_area != null:
 		player_stats.position_in_overworld = global_position
-		var packed_combat_scene = load("res://Scenes/Combat/combat_scene.tscn")
-		var combat_scene = packed_combat_scene.instantiate()
-		combat_scene.player_stats = player_stats
-		combat_scene.enemy_stats = enemy_in_interacted_area.enemy_stats
-		print_debug("assigned!")
-		get_tree().root.add_child(combat_scene)
+		GameManager.change_scene_to_combat(get_parent(), enemy_in_interacted_area.enemy_stats)
 		
-		var old_scene = get_tree().current_scene
-		get_tree().current_scene = combat_scene
-		old_scene.free()
 
 func _on_interacted_area_area_entered(area):
 	if area.get_parent().is_in_group("enemy"):

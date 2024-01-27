@@ -13,7 +13,12 @@ config_version=5
 config/name="Metrosolid"
 config/features=PackedStringArray("4.2", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
+
+[autoload]
+
+SoundManager="*res://addons/sound_manager/sound_manager.gd"
+GameManager="*res://Scenes/Game Manager/game_manager.tscn"
 
 [display]
 
@@ -21,7 +26,7 @@ window/size/viewport_width=648
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg")
+enabled=PackedStringArray("res://addons/phantom_camera/plugin.cfg", "res://addons/sound_manager/plugin.cfg")
 
 [file_customization]
 

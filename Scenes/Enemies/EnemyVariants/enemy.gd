@@ -6,6 +6,7 @@ class_name Enemy
 extends CharacterBody2D
 
 @export var enemy_stats: EnemyStats
+@onready var animation_tree = $AnimationPlayer/AnimationTree
 
 var facing_dir : FacingDirection.FACE :
 	set(value):
@@ -15,7 +16,7 @@ var facing_dir : FacingDirection.FACE :
 
 
 func _ready():
-	pass
+	animation_tree.active = true
 
 func update_direction(dir : Vector2):
 	if dir != Vector2.ZERO:

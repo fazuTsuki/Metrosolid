@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="playerStats" load_steps=2 format=3 uid="uid://gioqkr1v2fiy"]
+
+[ext_resource type="Script" path="res://Resource/PlayerStats.gd" id="1_4jhrb"]
+
+[resource]
+script = ExtResource("1_4jhrb")
+level = 1
+max_happy_points = 100.0
+act = 0
+starting_act = 10
+flat_exp = 0.0
+max_flat_exp = 0.0

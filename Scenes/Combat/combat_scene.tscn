@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://u3uj1y6jo7ry"]
+[gd_scene load_steps=12 format=3 uid="uid://u3uj1y6jo7ry"]
 
 [ext_resource type="Script" path="res://Scenes/Combat/combat_scene.gd" id="1_mplpw"]
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_7je8g"]
+[ext_resource type="Theme" uid="uid://hytdm12xva5" path="res://Assets/UI/default_theme.tres" id="3_ld800"]
 [ext_resource type="Script" path="res://Scenes/Combat/combat_manager.gd" id="4_ly14c"]
+[ext_resource type="Texture2D" uid="uid://djriaxkuk66i7" path="res://Assets/UI/UI_Square.png" id="5_4uxat"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_golc8"]
 bg_color = Color(0, 0.509804, 0.286275, 1)
@@ -39,6 +41,7 @@ bg_color = Color(0, 0.509804, 0.286275, 1)
 bg_color = Color(0, 0.709804, 0.364706, 1)
 
 [node name="CombatScene" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,6 +89,8 @@ show_percentage = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource("3_ld800")
+theme_override_font_sizes/font_size = 20
 text = "HP: 25/50"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -103,6 +108,8 @@ show_percentage = false
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource("3_ld800")
+theme_override_font_sizes/font_size = 20
 text = "EG: 25/50"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -135,13 +142,23 @@ grow_vertical = 0
 [node name="ActionPanel" type="NinePatchRect" parent="PlayerPanel/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+theme = ExtResource("3_ld800")
+texture = ExtResource("5_4uxat")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="Actions" type="VBoxContainer" parent="PlayerPanel/HBoxContainer/ActionPanel"]
 custom_minimum_size = Vector2(85, 0)
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 7.5
+offset_right = -7.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -150,6 +167,7 @@ alignment = 1
 layout_mode = 2
 focus_mode = 0
 mouse_default_cursor_shape = 2
+theme = ExtResource("3_ld800")
 text = "Set Up"
 flat = true
 
@@ -157,6 +175,7 @@ flat = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
+theme = ExtResource("3_ld800")
 text = "Meander
 "
 flat = true
@@ -165,17 +184,24 @@ flat = true
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_default_cursor_shape = 2
+theme = ExtResource("3_ld800")
 text = "Punchline"
 flat = true
 
 [node name="Escape" type="Button" parent="PlayerPanel/HBoxContainer/ActionPanel/Actions"]
 layout_mode = 2
+theme = ExtResource("3_ld800")
 text = "Escape"
 flat = true
 
 [node name="Textbox" type="NinePatchRect" parent="PlayerPanel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+texture = ExtResource("5_4uxat")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
 
 [node name="PlayerData" type="HBoxContainer" parent="PlayerPanel/HBoxContainer/Textbox"]
 layout_mode = 1
@@ -189,6 +215,7 @@ alignment = 1
 [node name="Name" type="Label" parent="PlayerPanel/HBoxContainer/Textbox/PlayerData"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("3_ld800")
 text = "PLAYER"
 
 [node name="HPProgressBar" type="ProgressBar" parent="PlayerPanel/HBoxContainer/Textbox/PlayerData"]
@@ -210,13 +237,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_ld800")
 text = "HP: 25/50"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Label" type="Label" parent="PlayerPanel/HBoxContainer/Textbox/PlayerData"]
 layout_mode = 2
+theme = ExtResource("3_ld800")
 text = "ACT 10"
 
 [node name="LogData" type="VBoxContainer" parent="PlayerPanel/HBoxContainer/Textbox"]
+texture_filter = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -247,6 +279,11 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+texture = ExtResource("5_4uxat")
+patch_margin_left = 18
+patch_margin_top = 18
+patch_margin_right = 18
+patch_margin_bottom = 18
 
 [node name="DetailText" type="Label" parent="DetailPanel"]
 custom_minimum_size = Vector2(628, 40)
@@ -262,4 +299,5 @@ offset_right = 37.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_ld800")
 autowrap_mode = 3
