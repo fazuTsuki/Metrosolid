@@ -113,28 +113,52 @@ func _on_button_see_idea(type_of_idea):
 
 #show the materials in ui
 func show_idea(type_of_idea):
-	var idea_count: int = 0
 	var current_box_container: HBoxContainer
-	for idea in player_stats.materials:
-		if idea.type == type_of_idea:
-			if idea_count % 2 == 0:
-				current_box_container = HBoxContainer.new()
-				current_box_container.alignment = BoxContainer.ALIGNMENT_CENTER
-				idea_container.add_child(current_box_container)
-			var button = Button.new()
-			button.name = idea.name
-			button.flat = true
-			button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-			button.text = idea.name
-			button.mouse_entered.connect(idea_hover_in.bind(idea))
-			button.mouse_exited.connect(idea_hover_out)
-			button.pressed.connect(use_idea.bind(idea))
-			current_box_container.add_child(button)
-			idea_count += 1
-	if idea_count % 2 == 0:
-		current_box_container = HBoxContainer.new()
-		current_box_container.alignment = BoxContainer.ALIGNMENT_CENTER
-		idea_container.add_child(current_box_container)
+	var temp_arr : Array[JokeMaterial] = []
+	var dump_arr : Array[JokeMaterial] = []
+	
+	for material in player_stats.materials:
+		if material.type == type_of_idea:
+			if temp_arr.size() < 2 and !dump_arr.has(material):
+				temp_arr.append(material)
+				dump_arr.append(material)
+			elif !dump_arr.has(material):
+				var clear = true
+				for check in material.joke_type:
+					clear = enemy_stats.cringebone.has(check)
+				if clear:
+					temp_arr.append(material)
+				else:
+					dump_arr.append(material)
+	
+	while temp_arr.size() < 3:
+		temp_arr.append(dump_arr.pick_random())
+	
+	temp_arr.shuffle()
+	
+	var idea_count: int = 0
+	for idea in temp_arr:
+		if idea_count % 2 == 0:
+			current_box_container = HBoxContainer.new()
+			current_box_container.alignment = BoxContainer.ALIGNMENT_CENTER
+			idea_container.add_child(current_box_container)
+		var button = Button.new()
+		button.name = idea.name
+		button.flat = true
+		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		button.text = idea.name
+		button.mouse_entered.connect(idea_hover_in.bind(idea))
+		button.mouse_exited.connect(idea_hover_out)
+		button.pressed.connect(use_idea.bind(idea))
+		current_box_container.add_child(button)
+		idea_count += 1
+		if idea_count % 2 == 0:
+			current_box_container = HBoxContainer.new()
+			current_box_container.alignment = BoxContainer.ALIGNMENT_CENTER
+			idea_container.add_child(current_box_container)
+			
+		if idea_count >= 3: break
+	
 	var button_back = Button.new()
 	button_back.name = "back"
 	button_back.flat = true

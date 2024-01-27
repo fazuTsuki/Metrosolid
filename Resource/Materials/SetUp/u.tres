@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://bodrcp4wo6xb"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_nqjeu"]
+
+[resource]
+script = ExtResource("1_nqjeu")
+name = "zdfndgnd"
+type = 0
+joke_type = Array[int]([0])
+haha_strength = 0.0
+engagement_strength = 10.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "deez skibidi nut fanum tax"
