@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://oxkusg70jw1i"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_r0vu2"]
+
+[resource]
+script = ExtResource("1_r0vu2")
+name = "no setup"
+type = 0
+joke_type = Array[int]([4, 3])
+haha_strength = 0.0
+engagement_strength = 10.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "Before I elaborate, I just wanna say I don't have anything to say."

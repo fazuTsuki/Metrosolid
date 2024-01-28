@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0l178ltyb6l4"]
+
+[ext_resource type="Script" path="res://Scenes/Menu/Game Over/Game Over.gd" id="1_m1oab"]
+[ext_resource type="Theme" uid="uid://hytdm12xva5" path="res://Assets/UI/default_theme.tres" id="2_doalj"]
+
+[node name="GameOver" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m1oab")
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -199.0
+offset_bottom = -142.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_doalj")
+theme_override_font_sizes/font_size = 50
+text = "YOU ARE DEPRESSED :("
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Back" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_doalj")
+text = "BACK"
+flat = true
+
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]

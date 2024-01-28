@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://co63ljw8gxii1"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_udqr1"]
+
+[resource]
+script = ExtResource("1_udqr1")
+name = "hit big"
+type = 1
+joke_type = Array[int]([7, 5])
+haha_strength = 0.0
+engagement_strength = 10.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "Did you know that 90% people quit their job before they hit big? getting a gambling mindset is a gift after all."

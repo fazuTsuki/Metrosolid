@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var player_stats: playerStats
-@export var speed : float = 400
+@export var speed : float = 100
 var enemy_in_interacted_area
 @onready var animation_tree = $AnimationPlayer/AnimationTree
 

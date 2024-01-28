@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://f3rarrbl203x"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_6288q"]
+
+[resource]
+script = ExtResource("1_6288q")
+name = "life like"
+type = 0
+joke_type = Array[int]([0, 5, 3])
+haha_strength = 0.0
+engagement_strength = 10.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "Life is like... walking. Like water, like you. life is like."

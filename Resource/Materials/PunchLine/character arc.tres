@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://obv5t2rytgis"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_4b1t5"]
+
+[resource]
+script = ExtResource("1_4b1t5")
+name = "character arc"
+type = 2
+joke_type = Array[int]([6, 2])
+haha_strength = 20.0
+engagement_strength = 0.5
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "After all, life is full of misery and suffering, but it sure gives you a banger character arc."

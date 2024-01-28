@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://u3uj1y6jo7ry"]
+[gd_scene load_steps=13 format=3 uid="uid://u3uj1y6jo7ry"]
 
 [ext_resource type="Script" path="res://Scenes/Combat/combat_scene.gd" id="1_mplpw"]
 [ext_resource type="Texture2D" uid="uid://cydmr2o58f3sr" path="res://icon.svg" id="2_7je8g"]
 [ext_resource type="Theme" uid="uid://hytdm12xva5" path="res://Assets/UI/default_theme.tres" id="3_ld800"]
+[ext_resource type="Texture2D" uid="uid://d4aibuor24iur" path="res://Assets/UI/background combat.PNG" id="3_ui1vm"]
 [ext_resource type="Script" path="res://Scenes/Combat/combat_manager.gd" id="4_ly14c"]
 [ext_resource type="Texture2D" uid="uid://djriaxkuk66i7" path="res://Assets/UI/UI_Square.png" id="5_4uxat"]
 
@@ -36,9 +37,17 @@ corner_radius_bottom_left = 100
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c0olo"]
 bg_color = Color(0, 0.509804, 0.286275, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_73kpy"]
 bg_color = Color(0, 0.709804, 0.364706, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
 
 [node name="CombatScene" type="Control"]
 texture_filter = 1
@@ -54,12 +63,14 @@ script = ExtResource("1_mplpw")
 script = ExtResource("4_ly14c")
 
 [node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.32549, 0.32549, 0.32549, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_ui1vm")
 
 [node name="EnemyContainer" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(150, 0)

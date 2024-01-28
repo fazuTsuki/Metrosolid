@@ -1,7 +1,8 @@
 extends Resource
 class_name EnemyStats
 
-@export var potrait_combat: Texture 
+@export var unhappy_potrait_combat: Texture 
+@export var happy_potrait_combat: Texture
 
 @export var level: int = 1
 @export var engagement_threshhold: float = 1

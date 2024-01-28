@@ -1,5 +1,8 @@
 extends Enemy
 
+const unhappy_enemy_potrait = "res://Assets/Enemy/enemy_potrait.png"
+const happy_enemy_potrait = "res://Assets/Enemy/happy_enemy_potrait.png"
+
 func _ready():
 	super._ready()
 	set_state()
@@ -7,6 +10,8 @@ func _ready():
 func set_state():
 	var player_level = GameManager.player_stats.level
 	enemy_stats = EnemyStats.new(clamp(player_level + randi_range(-1,1),1,1000))
+	enemy_stats.unhappy_potrait_combat = load(unhappy_enemy_potrait)
+	enemy_stats.happy_potrait_combat = load(happy_enemy_potrait)
 
 
 func _physics_process(delta):

@@ -41,4 +41,3 @@ func change_to_overworld(player_stats : playerStats):
 	var old_scene = get_tree().current_scene
 	get_tree().current_scene = overworld_scene
 	old_scene.free()
-	

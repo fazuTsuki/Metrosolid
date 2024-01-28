@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://dx34ja1u7wray"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_kvvmo"]
+
+[resource]
+script = ExtResource("1_kvvmo")
+name = "the think"
+type = 0
+joke_type = Array[int]([3, 4])
+haha_strength = 0.0
+engagement_strength = 10.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "Now... let our mind rest and think about... the about."

@@ -88,10 +88,15 @@ func _physics_process(delta):
 func spawn_enemy():
 	#reset the path to the start
 	path_follow.progress = 0
-	
 	#setting up the enemy
 	var new_enemy = enemy_type.instantiate()
-	path_follow.add_child(new_enemy)
+	get_parent().add_child(new_enemy)
+	#setting up the remotetransform
+	var enemy_node_path = new_enemy.get_path()
+	var remote_transform = RemoteTransform2D.new()
+	remote_transform.remote_path = enemy_node_path
+	path_follow.add_child(remote_transform)
+	
 	spawned_enemy = new_enemy
 	can_spawn = false
 	

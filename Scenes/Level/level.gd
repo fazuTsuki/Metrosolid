@@ -2,11 +2,13 @@ class_name Level
 extends Node2D
 
 @onready var player_spawn_loc : Vector2 = %SpawnAnchor.global_position
-@onready var player_scene : PackedScene = preload("res://Scenes/Player/player.tscn") 
-
+@onready var player_scene : PackedScene = preload("res://Scenes/Player/player.tscn")
 var player : Player
 
+@onready var ost: AudioStream = preload("res://Assets/Audio/OST/overworld song (ver.1).mp3")
+
 func _ready():
+	SoundManager.play_music(ost)
 	global_position = Vector2.ZERO
 	player = player_scene.instantiate()
 	player.player_stats = GameManager.player_stats

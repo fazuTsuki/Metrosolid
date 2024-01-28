@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://wiiys3txj28r"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_1e6bv"]
+
+[resource]
+script = ExtResource("1_1e6bv")
+name = "you and I"
+type = 1
+joke_type = Array[int]([0, 2])
+haha_strength = 0.0
+engagement_strength = 10.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "Listen, you and I, we have a lot of things in common: being an entertainer. You work as the boss entertainer, while I work as you and the labor entertainer."

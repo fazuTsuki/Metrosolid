@@ -3,5 +3,7 @@
 [ext_resource type="FontFile" uid="uid://b68abm2wv7tw5" path="res://Assets/UI/tiny5-Medium.otf" id="1_n1s26"]
 
 [resource]
+Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_n1s26")
 Label/fonts/font = ExtResource("1_n1s26")
+RichTextLabel/fonts/normal_font = ExtResource("1_n1s26")

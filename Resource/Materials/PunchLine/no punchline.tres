@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://dfjd5yl02hq5h"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_h2ugx"]
+
+[resource]
+script = ExtResource("1_h2ugx")
+name = "no punchline"
+type = 0
+joke_type = Array[int]([4, 5, 2])
+haha_strength = 10.0
+engagement_strength = 0.5
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "All in all, life is like a joke without a punchline."

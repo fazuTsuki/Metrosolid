@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://bxa4q552rkguc"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_akq1e"]
+
+[resource]
+script = ExtResource("1_akq1e")
+name = "Ran out of Material"
+type = 1
+joke_type = Array[int]([0, 4, 2])
+haha_strength = 0.0
+engagement_strength = 10.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "Don't worry about not knowing what to say, I also have similar problem. I don't even have a joke for this one."

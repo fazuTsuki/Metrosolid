@@ -633,17 +633,19 @@ states/walk/position = Vector2(452, 39.3333)
 transitions = ["walk", "idle", SubResource("AnimationNodeStateMachineTransition_7dr0h"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_yvor2"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_5fkt7")]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_35uxo"]
-size = Vector2(129, 129)
+size = Vector2(15, 10)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4waff"]
 radius = 66.0303
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 texture_filter = 1
 script = ExtResource("1_aon1j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_1ait6")
+offset = Vector2(0, -9)
 flip_h = true
 hframes = 2
 vframes = 2
@@ -668,7 +670,7 @@ parameters/idle/blend_position = Vector2(0, 0)
 parameters/walk/blend_position = Vector2(0, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -0.5)
+position = Vector2(1, -2)
 shape = SubResource("RectangleShape2D_35uxo")
 
 [node name="interactedArea" type="Area2D" parent="."]

@@ -3,9 +3,13 @@
 class_name CombatScene
 extends Control
 
+const DEFAULT_THEME = preload("res://Assets/UI/default_theme.tres")
+
 @onready var set_up = $"PlayerPanel/HBoxContainer/ActionPanel/Actions/Set Up"
 @onready var meander = $PlayerPanel/HBoxContainer/ActionPanel/Actions/Meander
 @onready var punchline = $PlayerPanel/HBoxContainer/ActionPanel/Actions/Punchline
+
+@onready var enemy_potrait = $EnemyContainer/Enemy
 
 @onready var enemy_happy_point_progress_bar = $EnemyContainer/HappyPointProgressBar
 @onready var enemy_happy_point_progress_bar_label = $EnemyContainer/HappyPointProgressBar/Label
@@ -27,6 +31,9 @@ extends Control
 
 @onready var combat_manager_:combat_manager = $CombatManager
 
+@onready var ost: AudioStream = preload("res://Assets/Audio/OST/combat song.mp3")
+@onready var win_ost: AudioStream = preload("res://Assets/Audio/OST/win.mp3")
+
 var player_stats: playerStats
 var enemy_stats: EnemyStats
 
@@ -34,12 +41,16 @@ var combat_finished = false
 
 func _ready():
 	
+	SoundManager.play_music(ost)
+	
 	if !player_stats:
 		player_stats = ResourceLoader.load("res://Resource/example/player_stats_example.tres")
 		
 	if !enemy_stats:
 		enemy_stats = ResourceLoader.load("res://Resource/example/enemy_stats_example.tres")
-
+	
+	enemy_potrait.texture = enemy_stats.unhappy_potrait_combat
+	
 	player_stats.reset_act()
 	set_up.pressed.connect(_on_button_see_idea.bind(set_up.name))
 	meander.pressed.connect(_on_button_see_idea.bind(meander.name))
@@ -84,6 +95,7 @@ func update_enemy_stats():
 		enemy_engagement_progress_bar.get_theme_stylebox("background").bg_color = Color("6f6f6f")
 		enemy_engagement_progress_bar.get_theme_stylebox("fill").bg_color = Color("a2a2a2")
 	else:
+		
 		enemy_engagement_progress_bar.get_theme_stylebox("background").bg_color = Color("6a8100")
 		enemy_engagement_progress_bar.get_theme_stylebox("fill").bg_color = Color("94a400")
 
@@ -152,6 +164,7 @@ func show_idea(type_of_idea):
 		button.flat = true
 		button.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		button.text = idea.name
+		button.theme = DEFAULT_THEME
 		button.mouse_entered.connect(idea_hover_in.bind(idea))
 		button.mouse_exited.connect(idea_hover_out)
 		button.pressed.connect(use_idea.bind(idea))
@@ -169,6 +182,7 @@ func show_idea(type_of_idea):
 	button_back.flat = true
 	button_back.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	button_back.text = "back"
+	button_back.theme = DEFAULT_THEME
 	button_back.pressed.connect(back_to_first)
 	current_box_container.add_child(button_back)
 
@@ -188,17 +202,23 @@ func use_idea(idea:JokeMaterial):
 	update_player_stats()
 	player_turn()
 	show_log()
-	await get_tree().create_timer(0.75).timeout
+	await get_tree().create_timer(1).timeout
 	erase_log()
 	if player_stats.act == 0:
 		add_log_plain_text("Player act reaches 0")
-		add_log_plain_text("Player is on a limp and the npc departs")
+		add_log_plain_text("Player is on a limp.")
+		SoundManager.stop_music()
+		get_tree().change_scene_to_file("res://Scenes/Menu/Game Over/Game Over.tscn")
 	elif player_stats.happy_points.current_points == 0:
 		add_log_plain_text("Player is no longer happy...")
 		combat_finished = true
+		SoundManager.stop_music()
+		get_tree().change_scene_to_file("res://Scenes/Menu/Game Over/Game Over.tscn")
 	elif enemy_stats.happy_points.current_points == enemy_stats.happy_points.max_points:
+		enemy_potrait.texture = enemy_stats.happy_potrait_combat
 		add_log_plain_text("THE NPC IS HAPPY!!!")
 		combat_finished = true
+		SoundManager.play_music(win_ost)
 		player_stats.exp_up(combat_manager_.exp_gain(enemy_stats.level))
 	else:
 		back_to_first()
@@ -210,11 +230,13 @@ func erase_log():
 
 func add_log_plain_text(text:String):
 	var log = Label.new()
+	log.theme = DEFAULT_THEME
 	log.text = text
 	log_data.add_child(log)
 
 func add_log_stats_information(value,from:String):
 	var log = Label.new()
+	log.theme = DEFAULT_THEME
 	var array_from = from.split(" ")
 	log.text = array_from[0] + "'s " + array_from[2] + " " + array_from[1] + " by " + str(int(value))
 	log_data.add_child(log)

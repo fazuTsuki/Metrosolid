@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://dtb5w3v7v2o26"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_a17r3"]
+
+[resource]
+script = ExtResource("1_a17r3")
+name = "beating"
+type = 2
+joke_type = Array[int]([3, 1])
+haha_strength = 20.0
+engagement_strength = 0.5
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "After all, you can't win beating the number one employee. For beating though, i think you can win."

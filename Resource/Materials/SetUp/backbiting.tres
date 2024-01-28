@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://bv65utomlu05k"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_c1hks"]
+
+[resource]
+script = ExtResource("1_c1hks")
+name = "backbiting"
+type = 0
+joke_type = Array[int]([])
+haha_strength = 0.0
+engagement_strength = 10.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "But first, can we thank the boss for indirectly arranging our meeting here? I admire someone who would arrange a backbiting meeting of themselves."

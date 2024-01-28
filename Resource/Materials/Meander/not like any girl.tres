@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://bu5y27fxv8xli"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_xy867"]
+
+[resource]
+script = ExtResource("1_xy867")
+name = "not like any girls"
+type = 0
+joke_type = Array[int]([2, 0])
+haha_strength = 0.0
+engagement_strength = 15.0
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "I'm not like any cheerful genki girl, I tell bad jokes to the unfortunate labor. So I'm a nuisance girl."

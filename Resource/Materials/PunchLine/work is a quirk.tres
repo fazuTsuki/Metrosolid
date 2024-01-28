@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="JokeMaterial" load_steps=2 format=3 uid="uid://du0ynh2x4qh03"]
+
+[ext_resource type="Script" path="res://Resource/Materials/joke_material.gd" id="1_j6mpb"]
+
+[resource]
+script = ExtResource("1_j6mpb")
+name = "work is quirk"
+type = 2
+joke_type = Array[int]([])
+haha_strength = 20.0
+engagement_strength = 0.5
+level = 1
+level_constant = 0.1
+level_up_in_multiplicative = 2
+dialogue = "Well, work is a quirk after all, but it also makes you irk and is kind of a jerk."
