@@ -12,7 +12,7 @@ func _ready():
 	global_position = Vector2.ZERO
 	player = player_scene.instantiate()
 	player.player_stats = GameManager.player_stats
-	if GameManager.latest_player_pos:
+	if GameManager.latest_player_pos || GameManager.latest_player_pos != Vector2.ZERO:
 		player.global_position = GameManager.latest_player_pos
 	else:
 		player.global_position = player_spawn_loc

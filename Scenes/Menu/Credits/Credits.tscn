@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c3ibp5pa7v5wm"]
+[gd_scene load_steps=4 format=3 uid="uid://c3ibp5pa7v5wm"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/Credits/Credits.gd" id="1_abyvw"]
 [ext_resource type="Theme" uid="uid://hytdm12xva5" path="res://Assets/UI/default_theme.tres" id="2_4jic3"]
+[ext_resource type="Texture2D" uid="uid://csfdl5gjxq2jh" path="res://Assets/UI/Menu.png" id="2_e4nah"]
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -11,6 +12,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_abyvw")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.627451, 0.627451, 0.627451, 1)
+offset_right = 648.0
+offset_bottom = 648.0
+texture = ExtResource("2_e4nah")
 
 [node name="CreditText" type="RichTextLabel" parent="."]
 layout_mode = 1

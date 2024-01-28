@@ -208,18 +208,23 @@ func use_idea(idea:JokeMaterial):
 		add_log_plain_text("Player act reaches 0")
 		add_log_plain_text("Player is on a limp.")
 		SoundManager.stop_music()
+		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_file("res://Scenes/Menu/Game Over/Game Over.tscn")
 	elif player_stats.happy_points.current_points == 0:
 		add_log_plain_text("Player is no longer happy...")
 		combat_finished = true
 		SoundManager.stop_music()
+		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_file("res://Scenes/Menu/Game Over/Game Over.tscn")
 	elif enemy_stats.happy_points.current_points == enemy_stats.happy_points.max_points:
 		enemy_potrait.texture = enemy_stats.happy_potrait_combat
 		add_log_plain_text("THE NPC IS HAPPY!!!")
-		combat_finished = true
 		SoundManager.play_music(win_ost)
-		player_stats.exp_up(combat_manager_.exp_gain(enemy_stats.level))
+		if enemy_stats.happy_potrait_combat == load("res://Assets/Enemy/happy boss potrait.png"):
+			await get_tree().create_timer(1).timeout
+			get_tree().change_scene_to_file("res://Scenes/Menu/Win Screen/Win Screen.tscn")
+		else:
+			player_stats.exp_up(combat_manager_.exp_gain(enemy_stats.level))
 	else:
 		back_to_first()
 		

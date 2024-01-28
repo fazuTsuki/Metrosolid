@@ -1,0 +1,107 @@
+[gd_scene load_steps=11 format=3 uid="uid://dln4jj5xgjut0"]
+
+[ext_resource type="PackedScene" uid="uid://cnkc6m6026d6e" path="res://Scenes/Enemies/EnemyVariants/enemy.tscn" id="1_d2a3w"]
+[ext_resource type="Script" path="res://Scenes/Enemies/EnemyVariants/boss.gd" id="2_41xnf"]
+[ext_resource type="Texture2D" uid="uid://cclijg57xsin7" path="res://Assets/Enemy/Boss_idle.png" id="2_ou7lm"]
+[ext_resource type="Texture2D" uid="uid://lm8ylvioi3l5" path="res://Assets/Enemy/happy boss potrait.png" id="3_fao6s"]
+[ext_resource type="Script" path="res://Resource/EnemyStats.gd" id="4_y8crh"]
+[ext_resource type="Texture2D" uid="uid://di175mwsxcfun" path="res://Assets/Enemy/boss potrait.png" id="5_8sboi"]
+
+[sub_resource type="Resource" id="Resource_0l1aq"]
+script = ExtResource("4_y8crh")
+unhappy_potrait_combat = ExtResource("5_8sboi")
+happy_potrait_combat = ExtResource("3_fao6s")
+level = 10
+engagement_threshhold = 100.0
+max_happy_points = 300.0
+max_engagement_points = 300.0
+retention = 50.0
+retention_constant = 0.01
+resistant = 50.0
+resistant_constant = 0.01
+ticklebone = Array[int]([4])
+cringebone = Array[int]([0])
+
+[sub_resource type="Animation" id="Animation_v13rk"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ou7lm")]
+}
+
+[sub_resource type="Animation" id="Animation_j6an1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_ou7lm")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2qxjw"]
+_data = {
+"RESET": SubResource("Animation_j6an1"),
+"idle": SubResource("Animation_v13rk")
+}
+
+[node name="Boss" instance=ExtResource("1_d2a3w")]
+z_index = 1
+script = ExtResource("2_41xnf")
+enemy_stats = SubResource("Resource_0l1aq")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_ou7lm")
+offset = Vector2(0, -8)
+hframes = 2
+vframes = 2
+
+[node name="AnimationPlayer" parent="." index="2"]
+libraries = {
+"": SubResource("AnimationLibrary_2qxjw")
+}
+
+[node name="AnimationTree" parent="AnimationPlayer" index="0"]
+libraries = {
+"": SubResource("AnimationLibrary_2qxjw")
+}

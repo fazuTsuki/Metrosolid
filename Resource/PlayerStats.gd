@@ -15,7 +15,7 @@ signal signal_level_up
 @export var act: int
 @export var starting_act: int = 10
 
-var materials: Array[JokeMaterial] = []
+@export var materials: Array[JokeMaterial]
 var happy_points: GenericPointSystem
 var exp: GenericPointSystem
 
@@ -24,7 +24,6 @@ func _init():
 	exp = GenericPointSystem.new()
 	exp.max_points = 10
 	happy_points.reset_to_min = false
-	load_joke_materials()
 
 func load_joke_materials():
 	
@@ -34,17 +33,17 @@ func load_joke_materials():
 	
 	if set_up_dir:
 		for set_up in set_up_dir.get_files():
-			if set_up.contains(".tres"):
+			if set_up.contains(".tres") or set_up.contains(".tres.remap"):
 				materials.append(load("res://Resource/Materials/SetUp/" + set_up))
 	
 	if meander_dir:
 		for meander in meander_dir.get_files():
-			if meander.contains(".tres"):
+			if meander.contains(".tres") or meander.contains(".tres.remap"):
 				materials.append(load("res://Resource/Materials/Meander/" + meander))
 	
 	if punchline_dir:
 		for punchline in punchline_dir.get_files():
-			if punchline.contains(".tres"):
+			if punchline.contains(".tres") or punchline.contains(".tres.remap"):
 				materials.append(load("res://Resource/Materials/PunchLine/" + punchline))
 	
 

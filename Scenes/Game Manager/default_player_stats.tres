@@ -1,6 +1,24 @@
-[gd_resource type="Resource" script_class="playerStats" load_steps=2 format=3 uid="uid://gioqkr1v2fiy"]
+[gd_resource type="Resource" script_class="playerStats" load_steps=20 format=3 uid="uid://gioqkr1v2fiy"]
 
 [ext_resource type="Script" path="res://Resource/PlayerStats.gd" id="1_4jhrb"]
+[ext_resource type="Resource" uid="uid://bbhk8pmnugu5k" path="res://Resource/Materials/Meander/a good policy.tres" id="1_168u1"]
+[ext_resource type="Resource" uid="uid://co63ljw8gxii1" path="res://Resource/Materials/Meander/hit big.tres" id="2_ae83i"]
+[ext_resource type="Resource" uid="uid://dvuubbdynjdix" path="res://Resource/Materials/Meander/loop of life.tres" id="3_v1kv7"]
+[ext_resource type="Resource" uid="uid://bi1fa26xhenht" path="res://Resource/Materials/Meander/nicear than my apartment.tres" id="4_napl2"]
+[ext_resource type="Resource" uid="uid://bu5y27fxv8xli" path="res://Resource/Materials/Meander/not like any girl.tres" id="5_e1hto"]
+[ext_resource type="Resource" uid="uid://bxa4q552rkguc" path="res://Resource/Materials/Meander/Ran out of Material.tres" id="6_3ra34"]
+[ext_resource type="Resource" uid="uid://dxinpnvtkdag0" path="res://Resource/Materials/Meander/word full of rtyhmes.tres" id="7_7p06a"]
+[ext_resource type="Resource" uid="uid://wiiys3txj28r" path="res://Resource/Materials/Meander/you and I.tres" id="8_68mdg"]
+[ext_resource type="Resource" uid="uid://dtb5w3v7v2o26" path="res://Resource/Materials/PunchLine/beating.tres" id="9_333d8"]
+[ext_resource type="Resource" uid="uid://obv5t2rytgis" path="res://Resource/Materials/PunchLine/character arc.tres" id="10_mhenf"]
+[ext_resource type="Resource" uid="uid://dfjd5yl02hq5h" path="res://Resource/Materials/PunchLine/no punchline.tres" id="11_bl8gq"]
+[ext_resource type="Resource" uid="uid://co781v5cuxgqy" path="res://Resource/Materials/PunchLine/the benefits of hardwork.tres" id="12_bwdl1"]
+[ext_resource type="Resource" uid="uid://du0ynh2x4qh03" path="res://Resource/Materials/PunchLine/work is a quirk.tres" id="13_i13gy"]
+[ext_resource type="Resource" uid="uid://bv65utomlu05k" path="res://Resource/Materials/SetUp/backbiting.tres" id="14_eiirp"]
+[ext_resource type="Resource" uid="uid://4egg8unvvkt7" path="res://Resource/Materials/SetUp/cases and sense.tres" id="15_x46iq"]
+[ext_resource type="Resource" uid="uid://f3rarrbl203x" path="res://Resource/Materials/SetUp/life like.tres" id="16_ntl52"]
+[ext_resource type="Resource" uid="uid://oxkusg70jw1i" path="res://Resource/Materials/SetUp/no setup.tres" id="17_4mih2"]
+[ext_resource type="Resource" uid="uid://dx34ja1u7wray" path="res://Resource/Materials/SetUp/the think.tres" id="18_gubbh"]
 
 [resource]
 script = ExtResource("1_4jhrb")
@@ -8,5 +26,4 @@ level = 1
 max_happy_points = 100.0
 act = 0
 starting_act = 10
-flat_exp = 0.0
-max_flat_exp = 0.0
+materials = Array[Resource("res://Resource/Materials/joke_material.gd")]([ExtResource("1_168u1"), ExtResource("2_ae83i"), ExtResource("3_v1kv7"), ExtResource("4_napl2"), ExtResource("5_e1hto"), ExtResource("6_3ra34"), ExtResource("7_7p06a"), ExtResource("8_68mdg"), ExtResource("9_333d8"), ExtResource("10_mhenf"), ExtResource("11_bl8gq"), ExtResource("12_bwdl1"), ExtResource("13_i13gy"), ExtResource("14_eiirp"), ExtResource("15_x46iq"), ExtResource("16_ntl52"), ExtResource("17_4mih2"), ExtResource("18_gubbh")])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dnb817hciwevg"]
+[gd_scene load_steps=25 format=3 uid="uid://dnb817hciwevg"]
 
 [ext_resource type="Script" path="res://Scenes/Level/level.gd" id="1_616r3"]
 [ext_resource type="Shader" path="res://Scenes/Level/level.gdshader" id="1_ntgkm"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scenes/Enemies/overworld_enemy.gd" id="6_eqf06"]
 [ext_resource type="PackedScene" uid="uid://cmgalpfdeosh3" path="res://Scenes/Enemies/EnemyVariants/ordinary_worker.tscn" id="7_8vfjr"]
 [ext_resource type="Texture2D" uid="uid://d2pk056l3o8cw" path="res://Assets/Environment/light.png" id="10_ir2gl"]
+[ext_resource type="PackedScene" uid="uid://dln4jj5xgjut0" path="res://Scenes/Enemies/EnemyVariants/boss.tscn" id="11_wycbm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_01ms8"]
 shader = ExtResource("1_ntgkm")
@@ -369,10 +370,6 @@ inactive_update_mode = 0
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(2, -176)
 zoom = Vector2(3, 3)
-limit_left = -200
-limit_top = -536
-limit_right = 704
-limit_bottom = 16
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 script = ExtResource("3_t4veo")
@@ -452,3 +449,6 @@ y_sort_enabled = true
 position = Vector2(248, -80)
 texture = ExtResource("10_ir2gl")
 offset = Vector2(0, -25)
+
+[node name="Boss" parent="." instance=ExtResource("11_wycbm")]
+position = Vector2(192, -504)

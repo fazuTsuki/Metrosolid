@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://o2hrjghtq8gy"]
+[gd_scene load_steps=4 format=3 uid="uid://o2hrjghtq8gy"]
 
 [ext_resource type="Script" path="res://Scenes/Menu/Main Menu/Main Menu.gd" id="1_t8pbl"]
+[ext_resource type="Texture2D" uid="uid://csfdl5gjxq2jh" path="res://Assets/UI/Menu.png" id="2_dcblu"]
 [ext_resource type="Theme" uid="uid://hytdm12xva5" path="res://Assets/UI/default_theme.tres" id="2_vyguj"]
 
 [node name="MainMenu" type="Control"]
@@ -12,6 +13,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t8pbl")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.627451, 0.627451, 0.627451, 1)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_dcblu")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
